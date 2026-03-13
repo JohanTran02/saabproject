@@ -1,0 +1,1 @@
+export type Status = 'idle' | 'active' | 'work in progress | not finished' | 'finished' | 'verification';
