@@ -1,5 +1,4 @@
 import { Status } from "./general";
-import { MaintenanceSite, MaintenanceTask } from "./maintenance";
 
 type ResourceBuffer = {
     maxReqAmount: number,
@@ -7,16 +6,21 @@ type ResourceBuffer = {
     minReqAmount: number,
 }
 
-type BaseResource = {
+export type BaseResource = {
     id: string,
-    currentResources: Resource[],
+    //Should probably me multiple different types of fuel, ammunition and batteries. Only one for simplicity.
+    currentResources: {
+        fuel: Fuel,
+        ammunition: Ammunition,
+        battery: Battery,
+        // personnel: Personnel[]
+    },
 }
 
 export type Personnel = {
     id: string,
     status: Status,
-    currentMaintenanceTask: MaintenanceTask,
-    currentMaintenanceSite: MaintenanceSite,
+    // currentMaintenanceOrderId: string,
 }
 
 type ResourcesUnion = 'fuel' | 'ammunition' | 'spare_parts' | 'weapons' | 'battery' | 'equipment';
@@ -25,47 +29,31 @@ type BaseResourceProperties = {
     sku: string;
     name: string;
     amount: number;
-    buffer: ResourceBuffer
+    buffer?: ResourceBuffer
 }
 
 type Fuel = BaseResourceProperties & {
     type: 'fuel';
     unit: 'liters';
-    buffer: {
-        maxReqAmount: 0.8,
-        optimalReqAmount: 0.5,
-        minReqAmount: 0.2,
-    }
+    buffer: ResourceBuffer
 }
 
 type Ammunition = BaseResourceProperties & {
     type: 'ammunition';
-    unit: 'missiles' | 'bullet_rounds';
-    buffer: {
-        maxReqAmount: 0.8,
-        optimalReqAmount: 0.5,
-        minReqAmount: 0.2,
-    }
+    unit: 'missiles' | 'bullets';
+    buffer: ResourceBuffer
 }
 
 type Battery = BaseResourceProperties & {
     type: 'battery';
     unit: 'kWh';
-    buffer: {
-        maxReqAmount: 0.8,
-        optimalReqAmount: 0.5,
-        minReqAmount: 0.2,
-    }
+    buffer: ResourceBuffer
 }
 
 type GenericResource = BaseResourceProperties & {
     type: Exclude<ResourcesUnion, 'fuel' | 'ammunition' | 'battery'>;
-    buffer: {
-        maxReqAmount: 0.8,
-        optimalReqAmount: 0.5,
-        minReqAmount: 0.2,
-    }
     unit?: string;
+    buffer?: ResourceBuffer
 }
 
 export type Resource = Fuel | Ammunition | Battery | GenericResource;

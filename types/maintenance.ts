@@ -1,24 +1,20 @@
 import { Status } from "./general";
-import { Personnel, Resource } from "./resources";
+import { Resource } from "./resources";
 
 export type MaintenanceSite = {
     id: string,
     status: Status
-    personnel: Personnel[],
-    maintenanceOrder: MaintenanceOrder,
+    assignedPersonnelIds: string[],
+    maintenanceOrderId: string,
 }
 
-type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4';
+export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4';
 
 type MaintenanceGeneric = {
     id: string,
     status: Status,
-    issue: MaintenanceType,
+    taskName: MaintenanceType | string,
     description: string,
-    assignedPersonnel: Personnel[]
-    reqResources: Resource[]
-    airplaneId: string,
-    deadline: string,
     createdAt: string,
     startedAt: string,
     updatedAt: string,
@@ -26,11 +22,17 @@ type MaintenanceGeneric = {
 }
 
 //If the plane requires multiple maintenances create multiple MTs(Maintenance tasks) inside the order.
-type MaintenanceOrder = MaintenanceGeneric & {
+export type MaintenanceOrder = MaintenanceGeneric & {
     maintenanceTasks: MaintenanceTask[],
+    assignedPersonnelIds: string[]
+    airplaneId: string,
+    deadline: string,
+    reqTotalResources: Resource[]
 };
 
 export type MaintenanceTask = MaintenanceGeneric & {
-    maintenanceOrder: MaintenanceOrder,
+    maintenanceOrderId: string,
+    //assignedPersonnelIds: string[] Should at least show who works on a maintenance task? 
     maintenanceDuration: string,
+    reqResources: Resource[]
 }

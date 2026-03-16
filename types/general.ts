@@ -1,1 +1,7 @@
-export type Status = 'idle' | 'active' | 'work in progress | not finished' | 'finished' | 'verification';
+export type Status =
+    | 'idle'
+    | 'active'
+    | 'in_progress'
+    | 'verification'
+    | 'finished'
+    | 'blocked'       
