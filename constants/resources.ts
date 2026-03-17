@@ -1,4 +1,4 @@
-import { BaseResource } from "@/types/resources";
+import { BaseResource, Personnel } from "@/types/resources";
 
 const DEFAULT_BUFFER = {
     maxReqAmount: 0.8,
@@ -33,35 +33,37 @@ export const BaseResources: BaseResource = {
             unit: 'kWh',
             buffer: DEFAULT_BUFFER
         },
-        // personnel: [
-        //     {
-        //         id: "TECH-001",
-        //         status: "active"
-        //     },
-        //     {
-        //         id: "TECH-002",
-        //         status: "idle"
-        //     },
-        //     {
-        //         id: "TECH-003",
-        //         status: "in_progress"
-        //     },
-        //     {
-        //         id: "TECH-004",
-        //         status: "verification"
-        //     },
-        //     {
-        //         id: "TECH-005",
-        //         status: "idle"
-        //     },
-        //     {
-        //         id: "TECH-006",
-        //         status: "blocked"
-        //     },
-        //     {
-        //         id: "TECH-007",
-        //         status: "finished"
-        //     }
-        // ]
+
     },
 };
+
+export const personnelList: Personnel[] = [
+    {
+        id: "TECH-001",
+        status: "active"
+    },
+    {
+        id: "TECH-002",
+        status: "idle"
+    },
+    {
+        id: "TECH-003",
+        status: "in_progress"
+    },
+    {
+        id: "TECH-004",
+        status: "verification"
+    },
+    {
+        id: "TECH-005",
+        status: "idle"
+    },
+    {
+        id: "TECH-006",
+        status: "blocked"
+    },
+    {
+        id: "TECH-007",
+        status: "finished"
+    }
+]

@@ -1,4 +1,4 @@
-import MaintenanceOrderCreateModal from "@/components/maintenance/maintenance-order-create";
+import MaintenanceOrderCreateModal from "@/components/maintenance/maintenance-create-modal";
 import MaintenanceOrderList from "@/components/maintenance/maintenance-order-list";
 import MaintenanceOrderModal from "@/components/maintenance/maintenance-order-modal";
 import ResourceContainer from "@/components/resources/resources";
