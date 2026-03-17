@@ -8,7 +8,7 @@ export type MaintenanceSite = {
     maintenanceOrderId: string,
 }
 
-export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4';
+export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4' | 'none';
 
 type MaintenanceGeneric = {
     id: string,

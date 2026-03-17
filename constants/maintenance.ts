@@ -1,4 +1,4 @@
-import { MaintenanceOrder } from "@/types/maintenance";
+import { MaintenanceOrder, MaintenanceSite } from "@/types/maintenance";
 
 export const maintenanceOrders: MaintenanceOrder[] = [
     {
@@ -157,3 +157,37 @@ export const maintenanceTypesList = [
     { label: 'Maintenance-3', value: 'maintenance-3' },
     { label: 'Maintenance-4', value: 'maintenance-4' }
 ];
+
+// export type MaintenanceSite = {
+//     id: string,
+//     status: Status
+//     assignedPersonnelIds: string[],
+//     maintenanceOrderId: string,
+// }
+
+export const maintenanceSites: MaintenanceSite[] = [
+    {
+        id: 'maintenance-site-1',
+        status: 'idle',
+        assignedPersonnelIds: [],
+        maintenanceOrderId: ""
+    },
+    {
+        id: 'maintenance-site-2',
+        status: 'idle',
+        assignedPersonnelIds: [],
+        maintenanceOrderId: ""
+    },
+    {
+        id: 'maintenance-site-3',
+        status: 'idle',
+        assignedPersonnelIds: [],
+        maintenanceOrderId: ""
+    },
+    {
+        id: 'maintenance-site-4',
+        status: 'idle',
+        assignedPersonnelIds: [],
+        maintenanceOrderId: ""
+    },
+]
