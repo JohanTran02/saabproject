@@ -11,7 +11,7 @@ export default function MaintenanceTaskItem({ task }: { task: MaintenanceTask })
             <Text>Started:{task.startedAt}</Text>
             <Text>Updated:{task.updatedAt}</Text>
             <Text>Description: {task.description}</Text>
-            <Text>Maintenance Duration: {task.maintenanceDuration}</Text>
+            <Text>Expected maintenance Duration: {task.maintenanceDuration}</Text>
             <RequiredResourceList resources={task.reqResources} />
         </View>
     )
