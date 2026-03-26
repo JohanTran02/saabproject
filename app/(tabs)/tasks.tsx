@@ -1,13 +1,11 @@
-import { View } from "react-native";
+import MaintenanceTaskPage from "@/components/maintenance/maintenance-task";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MaintenanceTasks() {
 
     return (
-        <SafeAreaView>
-            <View>
-
-            </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <MaintenanceTaskPage />
         </SafeAreaView>
     )
 }
