@@ -16,7 +16,7 @@ export default function MaintenanceOrderItem({ order }: { order: MaintenanceOrde
                     <Text>{order.createdAt}</Text>
                 </View>
                 <Text>{order.airplaneId}</Text>
-                <Text>{order.taskName}</Text>
+                <Text>{order.orderTitle}</Text>
                 <Text>{order.description}</Text>
             </Pressable>
         </View>

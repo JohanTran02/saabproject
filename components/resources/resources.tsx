@@ -4,11 +4,11 @@ import { StyleSheet, View } from "react-native";
 import ResourceBar from "./resource-bar";
 
 export default function ResourceContainer() {
-    const resources = useContext(ResourceContext);
+    const { resource } = useContext(ResourceContext);
 
     return (
         <View style={styles.container}>
-            {Object.entries(resources.currentResources).map(([key, value]) => (
+            {Object.entries(resource.currentResources).map(([key, value]) => (
                 <ResourceBar
                     key={key}
                     resource={value}

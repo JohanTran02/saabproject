@@ -12,8 +12,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MaintenanceHome() {
     const { selectedOrder } = useContext(MaintenanceContext);
-    const { openCreateModal } = useContext(MaintenanceDispatchContext)
-    const setResources = useContext(ResourceDispatchContext);
+    const { openCreateModal, assignMaintenanceSite } = useContext(MaintenanceDispatchContext)
+    const { setResource } = useContext(ResourceDispatchContext);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -26,7 +26,8 @@ export default function MaintenanceHome() {
                     <Pressable style={styles.buttonStyle}
                         onPress={() => {
                             Alert.alert('Refilled');
-                            setResources(BaseResources);
+                            setResource(BaseResources);
+                            assignMaintenanceSite();
                         }}
                     >
                         <Text style={{ fontSize: 20 }}>Refill</Text>

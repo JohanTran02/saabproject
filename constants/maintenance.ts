@@ -18,7 +18,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
             }
         ],
 
-        taskName: "Pre-Mission Overhaul",
+        orderTitle: "Pre-Mission Overhaul",
         status: "active",
         description: "Comprehensive systems check and refueling before Mission Alpha.",
         createdAt: "2026-03-10T08:00:00Z",
@@ -31,7 +31,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 id: "TSK-001",
                 maintenanceOrderId: "ORD-2026-X7",
                 maintenanceDuration: "3h",
-                taskName: "maintenance-1",
+                taskType: "maintenance-1",
                 status: "in_progress",
                 description: "Refueling internal wing tanks and leak inspection.",
                 reqResources: [
@@ -53,7 +53,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 id: "TSK-002",
                 maintenanceOrderId: "ORD-2026-X7",
                 maintenanceDuration: "1.5h",
-                taskName: "maintenance-4",
+                taskType: "maintenance-4",
                 status: "verification",
                 description: "Swapping avionics batteries and testing HUD power.",
                 reqResources: [
@@ -88,7 +88,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 buffer: { minReqAmount: 200, optimalReqAmount: 500, maxReqAmount: 511 }
             }
         ],
-        taskName: "Quick Turnaround (Combat Prep)",
+        orderTitle: "Quick Turnaround (Combat Prep)",
         status: "active",
         description: "Urgent reload and weapons system calibration.",
         createdAt: "2026-03-13T10:00:00Z",
@@ -100,7 +100,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 id: "TSK-101",
                 maintenanceOrderId: "ORD-2026-X8",
                 maintenanceDuration: "45m",
-                taskName: "maintenance-3",
+                taskType: "maintenance-3",
                 status: "in_progress",
                 description: "Loading live munitions into bay 1 and 2.",
                 reqResources: [
@@ -124,7 +124,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 }
             }
         ],
-        taskName: "Critical Electrical Repair",
+        orderTitle: "Critical Electrical Repair",
         status: "idle", // Not started yet
         description: "Total avionics failure reported during taxi.",
         createdAt: "2026-03-13T15:00:00Z",
@@ -136,7 +136,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 id: "TSK-201",
                 maintenanceOrderId: "ORD-2026-X9",
                 maintenanceDuration: "6h",
-                taskName: "maintenance-2",
+                taskType: "maintenance-2",
                 status: "idle",
                 description: "Full diagnostic of electrical bus and battery replacement.",
                 reqResources: [
@@ -158,36 +158,33 @@ export const maintenanceTypesList = [
     { label: 'Maintenance-4', value: 'maintenance-4' }
 ];
 
-// export type MaintenanceSite = {
-//     id: string,
-//     status: Status
-//     assignedPersonnelIds: string[],
-//     maintenanceOrderId: string,
-// }
-
 export const maintenanceSites: MaintenanceSite[] = [
     {
         id: 'maintenance-site-1',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: ""
+        maintenanceOrderId: "",
+        maintenanceTaskId: ""
     },
     {
         id: 'maintenance-site-2',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: ""
+        maintenanceOrderId: "",
+        maintenanceTaskId: ""
     },
     {
         id: 'maintenance-site-3',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: ""
+        maintenanceOrderId: "",
+        maintenanceTaskId: ""
     },
     {
         id: 'maintenance-site-4',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: ""
+        maintenanceOrderId: "",
+        maintenanceTaskId: ""
     },
 ]
