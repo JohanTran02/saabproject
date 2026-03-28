@@ -29,7 +29,7 @@ export default function MaintenanceOrderModal({ order }: { order: MaintenanceOrd
                         <Text>{order.createdAt}</Text>
                     </View>
                     <Text>Airplane: {order.airplaneId}</Text>
-                    <Text>Task: {order.taskName}</Text>
+                    <Text>Task: {order.orderTitle}</Text>
                     <Text>Description: {order.description}</Text>
                     <Text>Started:{order.startedAt}</Text>
                     <Text>Updated:{order.updatedAt}</Text>

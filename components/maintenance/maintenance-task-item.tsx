@@ -6,7 +6,7 @@ export default function MaintenanceTaskItem({ task }: { task: MaintenanceTask })
     return (
         <View style={styles.itemCard}>
             <Text>{task.id}</Text>
-            <Text>{task.taskName}</Text>
+            <Text>{task.taskType}</Text>
             <Text>CreatedAt:{task.createdAt}</Text>
             <Text>Started:{task.startedAt}</Text>
             <Text>Updated:{task.updatedAt}</Text>

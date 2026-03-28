@@ -40,7 +40,7 @@ export const BaseResources: BaseResource = {
 export const personnelList: Personnel[] = [
     {
         id: "TECH-001",
-        status: "active"
+        status: "idle"
     },
     {
         id: "TECH-002",
@@ -48,11 +48,11 @@ export const personnelList: Personnel[] = [
     },
     {
         id: "TECH-003",
-        status: "in_progress"
+        status: "idle"
     },
     {
         id: "TECH-004",
-        status: "verification"
+        status: "idle"
     },
     {
         id: "TECH-005",
@@ -60,10 +60,10 @@ export const personnelList: Personnel[] = [
     },
     {
         id: "TECH-006",
-        status: "blocked"
+        status: "idle"
     },
     {
         id: "TECH-007",
-        status: "finished"
+        status: "idle"
     }
 ]

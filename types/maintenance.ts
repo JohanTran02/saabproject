@@ -6,6 +6,7 @@ export type MaintenanceSite = {
     status: Status
     assignedPersonnelIds: string[],
     maintenanceOrderId: string,
+    maintenanceTaskId: string,
 }
 
 export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4' | 'none';
@@ -13,7 +14,6 @@ export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3
 type MaintenanceGeneric = {
     id: string,
     status: Status,
-    taskName: MaintenanceType | string,
     description: string,
     createdAt: string,
     startedAt: string,
@@ -24,6 +24,7 @@ type MaintenanceGeneric = {
 //If the plane requires multiple maintenances create multiple MTs(Maintenance tasks) inside the order.
 export type MaintenanceOrder = MaintenanceGeneric & {
     maintenanceTasks: MaintenanceTask[],
+    orderTitle: string
     assignedPersonnelIds: string[]
     airplaneId: string,
     deadline: string,
@@ -31,8 +32,8 @@ export type MaintenanceOrder = MaintenanceGeneric & {
 };
 
 export type MaintenanceTask = MaintenanceGeneric & {
+    taskType: MaintenanceType | (string & {}),
     maintenanceOrderId: string,
-    //assignedPersonnelIds: string[] Should at least show who works on a maintenance task? 
     maintenanceDuration: string,
     reqResources: Resource[]
 }
