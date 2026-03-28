@@ -28,7 +28,7 @@ npm install
 - **TypeScript**
 
 ## Acknowledgements
-A special thank you to the organizers at **2Hero** for hosting the **SAAB Smart Air Base Hackathon 2026**. This project was directly inspired by the challenges presented during the event and wouldn't have been possible without everyone who made the hackathon.
+A special thank you to the organizers at **2Hero** and **SAAB** for hosting the **SAAB Smart Air Base Hackathon 2026**. This project was directly inspired by the challenges presented during the event and wouldn't have been possible without everyone who organized it.
 
 ## For more details about the planning/design:
 [FigJam](https://www.figma.com/board/Ind2dFCzO4HMaIcEnosHfF/Saabproject?node-id=0-1&p=f)</br>
