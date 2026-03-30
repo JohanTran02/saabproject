@@ -80,11 +80,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
         assignedPersonnelIds: ['Personnel-4', 'Personnel-5'],
         reqTotalResources: [
             {
-                type: 'ammunition', sku: 'AIM-120', name: 'AMRAAM', amount: 4, unit: 'missiles',
-                buffer: { minReqAmount: 2, optimalReqAmount: 4, maxReqAmount: 4 }
-            },
-            {
-                type: 'ammunition', sku: '20MM-VUL', name: 'Vulcan Rounds', amount: 500, unit: 'bullets',
+                type: 'ammunition', sku: '20MM-VUL', name: 'Vulcan Rounds', amount: 300, unit: 'bullets',
                 buffer: { minReqAmount: 200, optimalReqAmount: 500, maxReqAmount: 511 }
             }
         ],
@@ -104,7 +100,10 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 status: "in_progress",
                 description: "Loading live munitions into bay 1 and 2.",
                 reqResources: [
-                    { type: 'ammunition', sku: 'AIM-120', name: 'AMRAAM', amount: 4, unit: 'missiles', buffer: { minReqAmount: 2, optimalReqAmount: 4, maxReqAmount: 4 } }
+                    {
+                        type: 'ammunition', sku: '20MM-VUL', name: 'Vulcan Rounds', amount: 200, unit: 'bullets',
+                        buffer: { minReqAmount: 200, optimalReqAmount: 500, maxReqAmount: 511 }
+                    }
                 ],
                 createdAt: "2026-03-13T11:00:00Z",
                 startedAt: "2026-03-13T11:15:00Z",
@@ -120,7 +119,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
         assignedPersonnelIds: [],
         reqTotalResources: [
             {
-                type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 0, unit: 'kWh',
+                type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 100, unit: 'kWh',
                 buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 }
             }
         ],
@@ -140,7 +139,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 status: "idle",
                 description: "Full diagnostic of electrical bus and battery replacement.",
                 reqResources: [
-                    { type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 0, unit: 'kWh', buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 } }
+                    { type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 100, unit: 'kWh', buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 } }
                 ],
                 createdAt: "2026-03-13T15:00:00Z",
                 startedAt: "",
@@ -161,23 +160,23 @@ export const maintenanceTypesList = [
 export const maintenanceSites: MaintenanceSite[] = [
     {
         id: 'maintenance-site-1',
-        status: 'idle',
+        status: 'active',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "",
+        maintenanceOrderId: "ORD-2026-X7",
         maintenanceTaskId: ""
     },
     {
         id: 'maintenance-site-2',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "",
+        maintenanceOrderId: "ORD-2026-X9",
         maintenanceTaskId: ""
     },
     {
         id: 'maintenance-site-3',
-        status: 'idle',
+        status: 'active',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "",
+        maintenanceOrderId: "ORD-2026-X8",
         maintenanceTaskId: ""
     },
     {

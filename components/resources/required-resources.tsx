@@ -3,8 +3,8 @@ import { FlatList, Text, View } from "react-native";
 
 export default function RequiredResourceList({ resources }: { resources: Resource[] }) {
     return (
-        <View>
-            <Text>Required resources:</Text>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text>Required resources</Text>
             <FlatList
                 data={resources}
                 renderItem={({ item }) =>
