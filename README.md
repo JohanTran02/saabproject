@@ -5,7 +5,7 @@ This project originated from the **SAAB Smart Air Base Hackathon 2026**. The app
 1. Install Expo Go on IOS or Android device.
 
 2. Install repository and dependencies to run the application
-```powershell
+```bash
 git clone https://github.com/JohanTran02/saabproject.git
 
 npm install
@@ -33,3 +33,12 @@ A special thank you to the organizers at **2Hero** and **SAAB** for hosting the 
 ## For more details about the planning/design:
 [FigJam](https://www.figma.com/board/Ind2dFCzO4HMaIcEnosHfF/Saabproject?node-id=0-1&p=f)</br>
 [Figma](https://www.figma.com/design/kBx0bfdVJLJuZN8XRuRtED/saabproject?node-id=0-1&t=Vvwk8GXRevvGwTX7-)
+
+## User flow
+<img width="1544" height="473" alt="image" src="https://github.com/user-attachments/assets/94e72d00-23f3-4149-af21-74a19d50e42a" />
+<img width="1143" height="834" alt="image" src="https://github.com/user-attachments/assets/9cdbe6d1-2d3b-4dd5-a296-9731a6ec324d" />
+<img width="1023" height="539" alt="image" src="https://github.com/user-attachments/assets/db48afde-6e8e-4dac-b063-5462adffe406" />
+<img width="677" height="459" alt="image" src="https://github.com/user-attachments/assets/b783abfe-3632-4378-ad52-4eac838340ae" />
+
+## Demo
+https://github.com/user-attachments/assets/4b789d03-6a27-4ab1-a942-7ef2755e8c5f
