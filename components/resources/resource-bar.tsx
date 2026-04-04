@@ -1,18 +1,13 @@
+import { BaseResources } from "@/constants/resources";
 import { Resource } from "@/types/resources";
 import { Text, View } from "react-native";
 
-export default function ResourceBar({ resource }: { resource: Resource }) {
-    const width = (type: Resource) => {
-        if (resource.type === "fuel") {
-            return resource.amount / 1250 * 100
-        }
-        else if (resource.type === "battery") {
-            return resource.amount / 85 * 100
-        }
-        else if (resource.type === "ammunition") {
-            return resource.amount / 5000 * 100
-        }
-        return 100;
+export default function ResourceBar<T extends Resource>({ resource }: { resource: T }) {
+    const width = (resource: Resource) => {
+        const currentResource = BaseResources.find((baseResource) => baseResource.sku === resource.sku);
+        if (!currentResource) return 0;
+
+        return resource.amount / currentResource.amount * 100;
     }
 
     const unit = resource.unit ? resource.unit : ''

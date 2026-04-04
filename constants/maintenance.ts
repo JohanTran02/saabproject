@@ -7,13 +7,12 @@ export const maintenanceOrders: MaintenanceOrder[] = [
         deadline: "2026-03-20T12:00:00Z",
         assignedPersonnelIds: ['Personnel-1', 'Personnel-2', 'Personnel-3'],
         reqTotalResources: [
-            // This is the aggregate "Shopping List" for the whole hangar
             {
-                type: 'fuel', sku: 'JF-A1', name: 'Jet A-1', amount: 1200, unit: 'liters',
+                type: 'fuel', sku: 'FUEL-DIESEL-001', name: 'Diesel High-Grade', amount: 1200, unit: 'liters',
                 buffer: { minReqAmount: 1000, optimalReqAmount: 1800, maxReqAmount: 2000 }
             },
             {
-                type: 'battery', sku: 'BT-99', name: 'Main Power Cell', amount: 2, unit: 'kWh',
+                type: 'battery', sku: 'BATT-LI-ION-XL', name: 'Lithium-Ion Cell', amount: 2, unit: 'kWh',
                 buffer: { minReqAmount: 1, optimalReqAmount: 2, maxReqAmount: 2 }
             }
         ],
@@ -36,11 +35,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 description: "Refueling internal wing tanks and leak inspection.",
                 reqResources: [
                     {
-                        type: 'fuel',
-                        sku: 'JF-A1',
-                        name: 'Jet A-1',
-                        amount: 1200,
-                        unit: 'liters',
+                        type: 'fuel', sku: 'FUEL-DIESEL-001', name: 'Diesel High-Grade', amount: 1200, unit: 'liters',
                         buffer: { minReqAmount: 1000, optimalReqAmount: 1800, maxReqAmount: 2000 }
                     }
                 ],
@@ -58,11 +53,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 description: "Swapping avionics batteries and testing HUD power.",
                 reqResources: [
                     {
-                        type: 'battery',
-                        sku: 'BT-99',
-                        name: 'Main Power Cell',
-                        amount: 2,
-                        unit: 'kWh',
+                        type: 'battery', sku: 'BATT-LI-ION-XL', name: 'Lithium-Ion Cell', amount: 2, unit: 'kWh',
                         buffer: { minReqAmount: 1, optimalReqAmount: 2, maxReqAmount: 2 }
                     }
                 ],
@@ -80,9 +71,9 @@ export const maintenanceOrders: MaintenanceOrder[] = [
         assignedPersonnelIds: ['Personnel-4', 'Personnel-5'],
         reqTotalResources: [
             {
-                type: 'ammunition', sku: '20MM-VUL', name: 'Vulcan Rounds', amount: 300, unit: 'bullets',
-                buffer: { minReqAmount: 200, optimalReqAmount: 500, maxReqAmount: 511 }
-            }
+                type: 'ammunition', sku: 'AMMO-9MM-NATO', name: '9mm Rounds', amount: 4, unit: 'bullets',
+                buffer: { minReqAmount: 2, optimalReqAmount: 4, maxReqAmount: 4 }
+            },
         ],
         orderTitle: "Quick Turnaround (Combat Prep)",
         status: "active",
@@ -101,9 +92,9 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 description: "Loading live munitions into bay 1 and 2.",
                 reqResources: [
                     {
-                        type: 'ammunition', sku: '20MM-VUL', name: 'Vulcan Rounds', amount: 200, unit: 'bullets',
-                        buffer: { minReqAmount: 200, optimalReqAmount: 500, maxReqAmount: 511 }
-                    }
+                        type: 'ammunition', sku: 'AMMO-9MM-NATO', name: '9mm Rounds', amount: 4, unit: 'bullets',
+                        buffer: { minReqAmount: 2, optimalReqAmount: 4, maxReqAmount: 4 }
+                    },
                 ],
                 createdAt: "2026-03-13T11:00:00Z",
                 startedAt: "2026-03-13T11:15:00Z",
@@ -119,7 +110,7 @@ export const maintenanceOrders: MaintenanceOrder[] = [
         assignedPersonnelIds: [],
         reqTotalResources: [
             {
-                type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 100, unit: 'kWh',
+                type: 'battery', sku: 'BATT-LI-ION-XL', name: 'Lithium-Ion Cell', amount: 100, unit: 'kWh',
                 buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 }
             }
         ],
@@ -139,7 +130,10 @@ export const maintenanceOrders: MaintenanceOrder[] = [
                 status: "idle",
                 description: "Full diagnostic of electrical bus and battery replacement.",
                 reqResources: [
-                    { type: 'battery', sku: 'BT-ULTRA', name: 'Stealth-Ion Pack', amount: 100, unit: 'kWh', buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 } }
+                    {
+                        type: 'battery', sku: 'BATT-LI-ION-XL', name: 'Lithium-Ion Cell', amount: 100, unit: 'kWh',
+                        buffer: { minReqAmount: 80, optimalReqAmount: 100, maxReqAmount: 100 }
+                    }
                 ],
                 createdAt: "2026-03-13T15:00:00Z",
                 startedAt: "",
