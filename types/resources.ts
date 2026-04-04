@@ -6,26 +6,16 @@ type ResourceBuffer = {
     minReqAmount: number,
 }
 
-export type BaseResource = {
-    id: string,
-    //Should probably me multiple different types of fuel, ammunition and batteries. Only one for simplicity.
-    currentResources: {
-        fuel: Fuel,
-        ammunition: Ammunition,
-        battery: Battery,
-        // personnel: Personnel[]
-    },
-}
-
 export type Personnel = {
     id: string,
     status: Status,
     // currentMaintenanceOrderId: string,
 }
 
-type ResourcesUnion = 'fuel' | 'ammunition' | 'spare_parts' | 'weapons' | 'battery' | 'equipment';
+export type ResourcesUnion = 'fuel' | 'ammunition' | 'spare_parts' | 'weapons' | 'battery' | 'equipment';
 
 type BaseResourceProperties = {
+    type: ResourcesUnion,
     sku: string;
     name: string;
     amount: number;

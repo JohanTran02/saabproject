@@ -8,7 +8,7 @@ export default function ResourceContainer() {
 
     return (
         <View style={styles.container}>
-            {Object.entries(resource.currentResources).map(([key, value]) => (
+            {Object.entries(resource).map(([key, value]) => (
                 <ResourceBar
                     key={key}
                     resource={value}

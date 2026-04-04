@@ -1,14 +1,15 @@
 import { BaseResources, personnelList } from "@/constants/resources";
-import { BaseResource, Personnel } from "@/types/resources";
+import { Personnel, Resource } from "@/types/resources";
 import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useState } from "react";
 
 type Context = {
-    resource: BaseResource,
+    resource: Resource[],
     personnel: Personnel[]
 }
 
 type DispatchContext = {
-    setResource: Dispatch<SetStateAction<BaseResource>>,
+    setResource: Dispatch<SetStateAction<Resource[]>>,
+    updateResource: (resource: Resource) => void
     setPersonnel: Dispatch<SetStateAction<Personnel[]>>,
     assignPersonnel: () => string[],
 }
@@ -21,7 +22,7 @@ export const ResourceContext = createContext<Context>({
 export const ResourceDispatchContext = createContext<DispatchContext>({} as DispatchContext);
 
 export function ResourceProvider({ children }: { children: ReactNode }) {
-    const [resource, setResource] = useState<BaseResource>(BaseResources);
+    const [currentResource, setCurrentResource] = useState<Resource[]>(BaseResources);
     const [personnel, setPersonnel] = useState<Personnel[]>(personnelList);
 
     const assignPersonnel = useCallback(() => {
@@ -40,9 +41,26 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
         return technicianIds;
     }, [personnel])
 
+    const updateResource = useCallback(({ sku, amount }: Resource) => {
+        const resource = currentResource.find((currentResource) => currentResource.sku === sku);
+        if (!resource) return;
+
+        const newResourceValue = {
+            ...resource,
+            amount: Math.max(0, resource.amount - amount)
+        };
+
+        setCurrentResource(prev => prev.map((resource =>
+            resource.sku === resource.sku ?
+                newResourceValue :
+                resource))
+        );
+
+    }, [currentResource])
+
     return (
-        <ResourceContext value={{ resource, personnel }}>
-            <ResourceDispatchContext value={{ setResource, setPersonnel, assignPersonnel }}>
+        <ResourceContext value={{ resource: currentResource, personnel }}>
+            <ResourceDispatchContext value={{ updateResource, setResource: setCurrentResource, setPersonnel, assignPersonnel }}>
                 {children}
             </ResourceDispatchContext>
         </ResourceContext>
