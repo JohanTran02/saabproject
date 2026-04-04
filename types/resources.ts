@@ -12,7 +12,7 @@ export type Personnel = {
     // currentMaintenanceOrderId: string,
 }
 
-export type ResourcesUnion = 'fuel' | 'ammunition' | 'spare_parts' | 'weapons' | 'battery' | 'equipment';
+type ResourcesUnion = 'fuel' | 'ammunition' | 'spare_parts' | 'weapons' | 'battery' | 'equipment';
 
 type BaseResourceProperties = {
     type: ResourcesUnion,
