@@ -1,4 +1,4 @@
-import { MaintenanceOrder } from '@/types/maintenance';
+import { MaintenanceOrder, MaintenanceTask } from '@/types/maintenance';
 import 'react-native-get-random-values'
 
 export const createMaintenanceOrder = (personnelIds: string[]): MaintenanceOrder => {
@@ -18,5 +18,17 @@ export const createMaintenanceOrder = (personnelIds: string[]): MaintenanceOrder
         assignedPersonnelIds: personnelIds,
         airplaneId: '',
         maintenanceTasks: []
+    }
+}
+
+export const createQueueList = (tasks: MaintenanceTask[]) => {
+    const taskIds = tasks.map((tasks) => tasks.id);
+
+    const [currentTask, nextTask, ...queueTaskList] = taskIds;
+
+    return {
+        currentTask: currentTask ?? '',
+        nextTask: nextTask ?? '',
+        queueTaskList: queueTaskList
     }
 }

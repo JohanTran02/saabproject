@@ -11,9 +11,8 @@ export default function MaintenanceSiteItem({ site }: { site: MaintenanceSite })
         <Pressable
             style={{ backgroundColor: 'lightgray', flex: 1 }}
             onPress={() => {
-                const maintenanceOrder = maintenance.find((maintenance) => maintenance.id === site.maintenanceOrderId);
+                const maintenanceOrder = maintenance.find((maintenance) => maintenance.id === site.currentOrderId);
                 if (!maintenanceOrder) return;
-
                 openOrderModal();
                 setSelectedOrder(maintenanceOrder);
             }}
@@ -21,8 +20,9 @@ export default function MaintenanceSiteItem({ site }: { site: MaintenanceSite })
             <View style={{ height: 200 }}>
                 <Text>{site.id}</Text>
                 <Text>{site.status}</Text>
-                <Text>{site.maintenanceOrderId}</Text>
-                <Text>{site.maintenanceTaskId}</Text>
+                <Text>{site.currentOrderId}</Text>
+                <Text>{site.currentTaskId}</Text>
+                <Text>{site.nextTaskId}</Text>
             </View>
         </Pressable>
     )

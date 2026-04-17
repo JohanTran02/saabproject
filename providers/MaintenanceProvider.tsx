@@ -1,6 +1,6 @@
 import { maintenanceOrders, maintenanceSites } from "@/constants/maintenance";
 import { MaintenanceOrder, MaintenanceSite } from "@/types/maintenance";
-import { createMaintenanceOrder } from "@/utils/maintenance";
+import { createMaintenanceOrder, createQueueList } from "@/utils/maintenance";
 import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useContext, useState } from "react";
 import { ResourceDispatchContext } from "./ResourceProvider";
 
@@ -37,6 +37,7 @@ export function MaintenanceProvider({ children }: { children: ReactNode }) {
     const assignMaintenanceSite = useCallback(() => {
         const technicians = assignPersonnel();
         const maintenanceOrder = createMaintenanceOrder(technicians);
+        const { currentTask, nextTask, queueTaskList } = createQueueList(maintenanceOrder.maintenanceTasks);
 
         setMaintenance([...maintenance, maintenanceOrder]);
 
@@ -48,8 +49,11 @@ export function MaintenanceProvider({ children }: { children: ReactNode }) {
             if (site.id === idleSite.id) {
                 return {
                     ...site,
-                    status: 'in_progress',
-                    maintenanceOrderId: maintenanceOrder.id,
+                    status: 'active',
+                    queueTasksList: queueTaskList,
+                    nextTaskId: nextTask,
+                    currentOrderId: maintenanceOrder.id,
+                    currentTaskId: currentTask,
                     assignedPersonnelIds: maintenanceOrder.assignedPersonnelIds
                 }
             } else {

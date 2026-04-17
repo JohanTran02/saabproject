@@ -4,8 +4,8 @@ import { View, FlatList } from "react-native";
 import MaintenanceSite from "./maintenance-site";
 
 export default function MaintenanceSitesList() {
-
     const { sites } = useContext(MaintenanceContext);
+
     return (
         <View style={{ flex: 1, paddingHorizontal: 20 }}>
             <FlatList

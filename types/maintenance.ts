@@ -3,10 +3,12 @@ import { Resource } from "./resources";
 
 export type MaintenanceSite = {
     id: string,
-    status: Status
+    status: Status,
+    queueTasksList: string[],
     assignedPersonnelIds: string[],
-    maintenanceOrderId: string,
-    maintenanceTaskId: string,
+    nextTaskId: string,
+    currentOrderId: string,
+    currentTaskId: string,
 }
 
 export type MaintenanceType = 'maintenance-1' | 'maintenance-2' | 'maintenance-3' | 'maintenance-4' | 'none';

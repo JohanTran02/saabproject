@@ -156,28 +156,36 @@ export const maintenanceSites: MaintenanceSite[] = [
         id: 'maintenance-site-1',
         status: 'active',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "ORD-2026-X7",
-        maintenanceTaskId: ""
+        currentOrderId: "ORD-2026-X7",
+        currentTaskId: '',
+        queueTasksList: [],
+        nextTaskId: '',
     },
     {
         id: 'maintenance-site-2',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "ORD-2026-X9",
-        maintenanceTaskId: ""
+        currentOrderId: "",
+        currentTaskId: "",
+        queueTasksList: [],
+        nextTaskId: '',
     },
     {
         id: 'maintenance-site-3',
         status: 'active',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "ORD-2026-X8",
-        maintenanceTaskId: ""
+        currentOrderId: "ORD-2026-X8",
+        currentTaskId: "",
+        queueTasksList: [],
+        nextTaskId: '',
     },
     {
         id: 'maintenance-site-4',
         status: 'idle',
         assignedPersonnelIds: [],
-        maintenanceOrderId: "",
-        maintenanceTaskId: ""
+        currentOrderId: "",
+        currentTaskId: "",
+        queueTasksList: [],
+        nextTaskId: '',
     },
 ]
