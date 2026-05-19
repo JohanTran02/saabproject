@@ -1,27 +1,12 @@
 namespace backend.types
 {
-    public class Personnel
+    public abstract class ResourceGeneric
     {
         public int Id { get; set; }
 
-        public enum PersonnelStatus
-        {
-            Active,
-            Inactive
-        }
-
-        public PersonnelStatus Status { get; set; }
-
-        public int? CurrentMaintenanceTaskId { get; set; }
-    }
-
-    public abstract class ResourceGeneric
-    {
-        public int? Id { get; set; }
-
         public virtual UnitType Unit { get; }
 
-        public string? Name { get; set; }
+        public string Name { get; set; } = "";
 
         public int Amount { get; set; }
 
@@ -56,14 +41,12 @@ namespace backend.types
         public int MinReqAmount { get; set; }
     }
 
-
     public enum UnitType
     {
         kWh,
         L,
         rounds
     }
-
 
     public enum ResourceType
     {
