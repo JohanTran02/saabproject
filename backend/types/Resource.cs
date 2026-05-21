@@ -4,14 +4,24 @@ namespace backend.types
     {
         public int Id { get; set; }
 
-        public virtual UnitType Unit { get; }
-
+        public string Sku { get; set; } = "";
         public string Name { get; set; } = "";
 
-        public int Amount { get; set; }
-
+        public virtual UnitType Unit { get; }
         public virtual ResourceType Type { get; set; }
+    }
 
+    public class TaskResourceRequirement
+    {
+        public int Id { get; set; }
+
+        public int MaintenanceTaskId { get; set; }
+        public MaintenanceTask MaintenanceTask { get; set; } = null!;
+
+        public int ResourceId { get; set; }
+        public ResourceGeneric Resource { get; set; } = null!;
+
+        public int Amount { get; set; }
         public ResourceBuffer Buffer { get; set; } = new ResourceBuffer();
     }
 
@@ -25,7 +35,6 @@ namespace backend.types
     {
         public override ResourceType Type => ResourceType.Ammunition;
         public override UnitType Unit => UnitType.rounds;
-
     }
 
     public class Battery : ResourceGeneric

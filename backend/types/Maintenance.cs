@@ -3,17 +3,11 @@ namespace backend.types
     public class MaintenanceSite
     {
         public int Id { get; set; }
-        public List<int> QueueTaskListIds { get; set; } = [];
 
         public MaintenanceSiteStatus Status { get; set; }
 
-        public int NextTaskId { get; set; }
-
-        public List<int> AssignedPersonnelIds { get; set; } = [];
-
-        public int CurrentOrderId { get; set; }
-
-        public int CurrentTaskId { get; set; }
+        public int? CurrentTaskId { get; set; }
+        public MaintenanceTask? CurrentTask { get; set; }
     }
 
     public abstract class MaintenanceGeneric
@@ -21,8 +15,6 @@ namespace backend.types
         public int Id { get; set; }
         public string Comments { get; set; } = "";
         public string Description { get; set; } = "";
-
-        public List<int> ReqResourceIds { get; set; } = [];
 
         public MaintenanceGenericStatus Status { get; set; }
 
@@ -34,26 +26,28 @@ namespace backend.types
 
     public class MaintenanceOrder : MaintenanceGeneric
     {
-        public List<int> TaskIds { get; set; } = [];
-
         public string OrderTitle { get; set; } = "";
 
-        public int AirplaneId { get; set; }
-
-        public DateTimeOffset Deadline { get; set; }
-
-        public List<int> AssignedPersonnelIds { get; set; } = [];
-
+        public List<MaintenanceTask> Tasks { get; set; } = [];
     }
 
     public class MaintenanceTask : MaintenanceGeneric
     {
         public int OrderId { get; set; }
+        public MaintenanceOrder MaintenanceOrder { get; set; } = null!;
+
+        public int AirplaneId { get; set; }
+        public Airplane Airplane { get; set; } = null!;
 
         public TaskType Type { get; set; }
 
         public TimeSpan Duration { get; set; }
 
+        public List<Personnel> AssignedPersonnel { get; set; } = [];
+
+        public List<TaskResourceRequirement> ResourceRequirements { get; set; } = [];
+
+        public DateTimeOffset Deadline { get; set; }
     }
 
     public enum MaintenanceSiteStatus
