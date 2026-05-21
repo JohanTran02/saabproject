@@ -16,23 +16,27 @@ namespace backend.types
     {
         public override UserRole Role => UserRole.Technician;
 
-        public int CurrentTaskId { get; set; }
+        public int? CurrentTaskId { get; set; }
+
+        public MaintenanceTask? CurrentTask { get; set; }
     }
 
     public class Operator : Personnel
     {
         public override UserRole Role => UserRole.Operator;
 
-        public int CurrentOrderId { get; set; }
+        public int? CurrentOrderId { get; set; }
+
+        public MaintenanceOrder? CurrentOrder { get; set; }
     }
 
     public class Supervisor : Personnel
     {
         public override UserRole Role => UserRole.Supervisor;
 
-        public int CurrentSiteId { get; set; }
+        public int? CurrentTaskId { get; set; }
 
-        public List<int> CurrentOrderIds { get; set; } = [];
+        public MaintenanceTask? CurrentTask { get; set; }
     }
 
     public enum UserRole
