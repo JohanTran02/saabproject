@@ -23,7 +23,7 @@ namespace backend.types.DTO
         public PersonnelDTO MapToDto(Personnel personnel) => personnel switch
         {
             Technician t => new PersonnelDTO(t.Id, t.Name, t.Status.ToString(), t.Role.ToString(), t.CurrentTaskId),
-            Supervisor s => new PersonnelDTO(s.Id, s.Name, s.Status.ToString(), s.Role.ToString(), s.CurrentSiteId, CurrentSiteId: s.CurrentSiteId),
+            Supervisor s => new PersonnelDTO(s.Id, s.Name, s.Status.ToString(), s.Role.ToString(), s.CurrentTaskId),
             Operator o => new PersonnelDTO(o.Id, o.Name, o.Status.ToString(), o.Role.ToString(), CurrentOrderId: o.CurrentOrderId),
             _ => throw new ArgumentException("Unknown personnel type")
         };

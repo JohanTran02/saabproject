@@ -5,18 +5,34 @@ namespace backend.types.DTO
     public record ResourceDTO(
         [Required]
         int Id,
-        string Name,
-        string Type,
         int Amount,
-        ResourceBufferDTO Buffer
+        string Name,
+        string Type
     )
     {
         public static ResourceDTO FromEntity(ResourceGeneric resource) => new(
             Id: resource.Id,
             Name: resource.Name,
             Amount: resource.Amount,
-            Type: resource.Type.ToString(),
-            Buffer: ResourceBufferDTO.FromEntity(resource.Buffer)
+            Type: resource.Type.ToString()
+        );
+    }
+
+    public record TaskResourceRequirementDTO(
+        [Required]
+        int Id,
+        int Amount,
+        ResourceBufferDTO Buffer
+    )
+    {
+        public static TaskResourceRequirementDTO FromEntity(TaskResourceRequirement resource) => new(
+            Id: resource.Id,
+            Amount: resource.Amount,
+            Buffer: new ResourceBufferDTO(
+            resource.Buffer.MinReqAmount,
+            resource.Buffer.OptimalReqAmount,
+            resource.Buffer.MinReqAmount
+            )
         );
     }
 

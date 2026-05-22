@@ -7,6 +7,8 @@ namespace backend.types
         public string Sku { get; set; } = "";
         public string Name { get; set; } = "";
 
+        public int Amount { get; set; }
+
         public virtual UnitType Unit { get; }
         public virtual ResourceType Type { get; set; }
     }
@@ -15,8 +17,8 @@ namespace backend.types
     {
         public int Id { get; set; }
 
-        public int MaintenanceTaskId { get; set; }
-        public MaintenanceTask MaintenanceTask { get; set; } = null!;
+        public int TaskId { get; set; }
+        public MaintenanceTask Task { get; set; } = null!;
 
         public int ResourceId { get; set; }
         public ResourceGeneric Resource { get; set; } = null!;
