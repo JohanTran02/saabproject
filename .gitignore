@@ -45,3 +45,5 @@ app-example
 # backend
 bin
 obj
+/backend/.vs
+/.vs
