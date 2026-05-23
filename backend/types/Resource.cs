@@ -47,6 +47,7 @@ namespace backend.types
 
     public class ResourceBuffer
     {
+        public int Id { get; set; }
         public int MaxReqAmount { get; set; }
         public int OptimalReqAmount { get; set; }
         public int MinReqAmount { get; set; }

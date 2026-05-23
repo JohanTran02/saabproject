@@ -29,6 +29,7 @@ namespace backend.types.DTO
             Id: resource.Id,
             Amount: resource.Amount,
             Buffer: new ResourceBufferDTO(
+            resource.Buffer.Id,
             resource.Buffer.MinReqAmount,
             resource.Buffer.OptimalReqAmount,
             resource.Buffer.MinReqAmount
@@ -37,6 +38,7 @@ namespace backend.types.DTO
     }
 
     public record ResourceBufferDTO(
+        int Id,
         int MaxReqAmount,
         int OptimalReqAmount,
         int MinReqAmount
@@ -44,6 +46,7 @@ namespace backend.types.DTO
 
     {
         public static ResourceBufferDTO FromEntity(ResourceBuffer buffer) => new(
+            Id: buffer.Id,
             MaxReqAmount: buffer.MaxReqAmount,
             OptimalReqAmount: buffer.OptimalReqAmount,
             MinReqAmount: buffer.MinReqAmount
