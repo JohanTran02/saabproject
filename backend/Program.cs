@@ -1,3 +1,4 @@
+using backend;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,11 @@ builder.Services.AddDbContext<MaintenanceDbContext>(options =>
 );
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    SeedData.Seed(scope.ServiceProvider);
+}
 
 app.MapGet("/", () => "Hello World!");
 
