@@ -1,6 +1,6 @@
 services:
-  backend:
-    build: 
+  api:
+    build:
       context: .
       dockerfile: Dockerfile
     env_file:
@@ -8,11 +8,15 @@ services:
     ports:
       - 8080:8080
     environment:
+      - ASPNETCORE_URLS=http://+:8080
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=host=${DB_HOST};port=${DB_PORT};database=${DB_NAME};user id=${DB_USER};password=${DB_PASSWORD};timeout=30;
     depends_on:
-    - db
-  db:
+      postgres_db:
+        condition: service_healthy
+        restart: true  
+
+  postgres_db:
     image: postgres:18
     restart: always
     env_file:
@@ -20,9 +24,17 @@ services:
     ports:
       - 5432:5432
     environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
 volumes:
   postgres_data:

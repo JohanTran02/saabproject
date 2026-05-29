@@ -11,7 +11,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    SeedData.Seed(scope.ServiceProvider);
+    await SeedData.Seed(scope.ServiceProvider);
 }
 
 app.MapGet("/", () => "Hello World!");
