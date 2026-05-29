@@ -6,14 +6,14 @@ namespace backend
 {
     public static class SeedData
     {
-        public static async void Seed(IServiceProvider serviceProvider)
+        public static async Task Seed(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<MaintenanceDbContext>();
 
-            if (context.Airplanes.Any()) return;
-
             await context.Database.MigrateAsync();
+
+            if (await context.Airplanes.AnyAsync()) return;
 
             var fakeTech = new Faker<Technician>()
                 .RuleFor(t => t.Name, f => f.Person.FirstName + " " + f.Person.LastName)
