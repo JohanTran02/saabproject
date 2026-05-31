@@ -1,6 +1,7 @@
 using Bogus;
 using backend.types;
 using Microsoft.EntityFrameworkCore;
+using backend.data;
 
 namespace backend
 {
