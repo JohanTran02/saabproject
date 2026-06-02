@@ -75,9 +75,11 @@ namespace backend
                 .RuleFor(t => t.Deadline, f => f.Date.Future().ToUniversalTime());
 
             var fakeAirplanes = new Faker<Airplane>()
-                .RuleFor(a => a.Ammunition, f => fakeAmmo.Generate(1))
-                .RuleFor(a => a.Fuel, f => fakeFuel.Generate(1))
-                .RuleFor(a => a.Battery, f => fakeBattery.Generate(1));
+                .RuleFor(a => a.Resources, f => [
+                    .. fakeAmmo.Generate(1),
+                    .. fakeFuel.Generate(1),
+                    .. fakeBattery.Generate(1)
+                ]);
 
             var fakeResource = new Faker<TaskResourceRequirement>()
                 .RuleFor(r => r.Amount, f => f.Random.Int(1, 10))

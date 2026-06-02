@@ -26,6 +26,11 @@ namespace backend.data
             .HasValue<Fuel>(ResourceType.Fuel)
             .HasValue<Ammunition>(ResourceType.Ammunition)
             .HasValue<Battery>(ResourceType.Battery);
+
+            modelBuilder.Entity<ResourceGeneric>()
+            .HasOne(r => r.Airplane)
+            .WithMany(a => a.Resources)
+            .HasForeignKey(r => r.AirplaneId);
         }
     }
 }
