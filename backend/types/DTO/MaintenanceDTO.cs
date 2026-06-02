@@ -64,7 +64,7 @@ namespace backend.types.DTO
         DateTimeOffset EndedAt,
 
         //Unique fields
-        int OrderId,
+        int MaintenanceOrderId,
         int AirplaneId,
         TaskType Type,
         double DurationMinutes
@@ -88,7 +88,7 @@ namespace backend.types.DTO
             CreatedAt: task.CreatedAt,
             UpdatedAt: task.UpdatedAt,
             EndedAt: task.EndedAt,
-            OrderId: task.OrderId,
+            MaintenanceOrderId: task.MaintenanceOrderId,
             AirplaneId: task.AirplaneId,
             Type: task.Type,
             DurationMinutes: task.Duration.TotalMinutes
