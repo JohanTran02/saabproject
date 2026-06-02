@@ -33,7 +33,7 @@ namespace backend.types
 
     public class MaintenanceTask : MaintenanceGeneric
     {
-        public int OrderId { get; set; }
+        public int MaintenanceOrderId { get; set; }
         public MaintenanceOrder MaintenanceOrder { get; set; } = null!;
 
         public int AirplaneId { get; set; }
