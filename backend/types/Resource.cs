@@ -10,7 +10,10 @@ namespace backend.types
         public int Amount { get; set; }
 
         public virtual UnitType Unit { get; }
-        public virtual ResourceType Type { get; set; }
+        public virtual ResourceType Type { get; }
+
+        public int? AirplaneId { get; set; }
+        public Airplane? Airplane { get; set; }
     }
 
     public class TaskResourceRequirement
