@@ -2,10 +2,12 @@ using System.Text.Json.Serialization;
 using backend;
 using backend.data;
 using backend.Resources;
+using backend.TaskItems;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IResourceService, ResourceService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddDbContext<MaintenanceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -42,6 +44,7 @@ if (app.Environment.IsDevelopment())
     await SeedData.Seed(scope.ServiceProvider);
 }
 
+app.RegisterTaskItemsEndpoints();
 app.RegisterResourceItemsEndpoints();
 app.UseHttpsRedirection();
 

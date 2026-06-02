@@ -28,6 +28,15 @@ namespace backend.types.DTO
 
         //Unique fields
         string OrderTitle
+    ) : MaintenanceGenericDTO(
+        Id,
+        Comments,
+        Description,
+        Status,
+        StartedAt,
+        CreatedAt,
+        UpdatedAt,
+        EndedAt
     )
     {
         public static MaintenanceOrderDTO FromEntity(MaintenanceOrder order) => new(
@@ -57,7 +66,7 @@ namespace backend.types.DTO
         //Unique fields
         int OrderId,
         int AirplaneId,
-        string Type,
+        TaskType Type,
         double DurationMinutes
     ) : MaintenanceGenericDTO(
         Id,
@@ -81,10 +90,49 @@ namespace backend.types.DTO
             EndedAt: task.EndedAt,
             OrderId: task.OrderId,
             AirplaneId: task.AirplaneId,
-            Type: task.Type.ToString(),
+            Type: task.Type,
             DurationMinutes: task.Duration.TotalMinutes
         );
+
+        public static MaintenanceTask FromDTO(CreateMaintenanceTaskDTO dto)
+        {
+            return new MaintenanceTask
+            {
+                Description = dto.Description,
+                OrderId = dto.OrderId,
+                AirplaneId = dto.AirplaneId,
+                Type = dto.Type,
+                Deadline = dto.Deadline,
+                Comments = dto.Comments ?? "",
+            };
+        }
     }
+
+    public record UpdateMaintenanceTaskDTO(
+        string? Comments,
+        string? Description,
+        MaintenanceGenericStatus? Status,
+        DateTimeOffset? StartedAt,
+        DateTimeOffset? UpdatedAt,
+        DateTimeOffset? EndedAt,
+
+        //Unique fields
+        TaskType? Type,
+        TimeSpan? Duration,
+        DateTimeOffset? Deadline
+    );
+
+    public record CreateMaintenanceTaskDTO(
+        [Required] string Description,
+
+        //Unique fields
+        [Required] int OrderId,
+        [Required] int AirplaneId,
+        [Required] TaskType Type,
+        [Required] DateTimeOffset Deadline,
+
+        string? Comments
+    );
 
     public record MaintenanceSiteDTO(
         [Required]
