@@ -9,16 +9,19 @@ namespace backend.Resources
     {
         private readonly MaintenanceDbContext _db = dbContext;
 
-        public async Task<List<ResourceGeneric>> GetAllAsync()
+        public async Task<List<ResourceDTO>> GetAllAsync()
         {
-            return await _db.Resources.ToListAsync();
+            List<ResourceGeneric> resources = await _db.Resources.ToListAsync();
+            List<ResourceDTO> dTOs = [.. resources.Select(ResourceDTO.FromEntity)];
+
+            return dTOs;
         }
 
-        public async Task<ResourceGeneric?> GetByIdAsync(int id)
+        public async Task<ResourceDTO?> GetByIdAsync(int id)
         {
             return await _db.Resources.FindAsync(id)
                 is ResourceGeneric resource
-                ? resource
+                ? ResourceDTO.FromEntity(resource)
                 : null;
         }
 
@@ -49,7 +52,7 @@ namespace backend.Resources
             return true;
         }
 
-        public async Task<ResourceGeneric> CreateAsync(CreateResourceDTO dto)
+        public async Task<ResourceDTO> CreateAsync(CreateResourceDTO dto)
         {
             bool exists = await _db.Resources
                 .OfType<ResourceGeneric>()
@@ -64,7 +67,9 @@ namespace backend.Resources
             _db.Resources.Add(entity);
             await _db.SaveChangesAsync();
 
-            return entity;
+            var resourceDTO = ResourceDTO.FromEntity(entity);
+
+            return resourceDTO;
         }
     }
 }
