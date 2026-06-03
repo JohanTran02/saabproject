@@ -8,13 +8,13 @@ namespace backend.types
 
         public PersonnelStatus Status { get; set; } = PersonnelStatus.Inactive;
 
-        public virtual UserRole Role { get; set; }
+        public abstract UserRole Role { get; set; }
 
     }
 
     public class Technician : Personnel
     {
-        public override UserRole Role => UserRole.Technician;
+        public override UserRole Role { get; set; } = UserRole.Technician;
 
         public int? CurrentTaskId { get; set; }
 
@@ -23,7 +23,7 @@ namespace backend.types
 
     public class Operator : Personnel
     {
-        public override UserRole Role => UserRole.Operator;
+        public override UserRole Role { get; set; } = UserRole.Operator;
 
         public int? CurrentOrderId { get; set; }
 
@@ -32,7 +32,7 @@ namespace backend.types
 
     public class Supervisor : Personnel
     {
-        public override UserRole Role => UserRole.Supervisor;
+        public override UserRole Role { get; set; } = UserRole.Supervisor;
 
         public int? CurrentTaskId { get; set; }
 
