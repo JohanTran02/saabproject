@@ -1,4 +1,5 @@
 using backend.types;
+using backend.utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.data
@@ -15,17 +16,21 @@ namespace backend.data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Personnel>()
-            .HasDiscriminator<UserRole>("Role")
-            .HasValue<Technician>(UserRole.Technician)
-            .HasValue<Operator>(UserRole.Operator)
-            .HasValue<Supervisor>(UserRole.Supervisor);
+            List<Personnel> personnel = [
+                new Technician(),
+                new Operator(),
+                new Supervisor()
+            ];
 
-            modelBuilder.Entity<ResourceGeneric>()
-            .HasDiscriminator<ResourceType>("Type")
-            .HasValue<Fuel>(ResourceType.Fuel)
-            .HasValue<Ammunition>(ResourceType.Ammunition)
-            .HasValue<Battery>(ResourceType.Battery);
+            modelBuilder.AutoMapByEnum<Personnel, UserRole>("Role", personnel);
+
+            List<ResourceGeneric> resources = [
+                new Fuel(),
+                new Ammunition(),
+                new Battery()
+            ];
+
+            modelBuilder.AutoMapByEnum<ResourceGeneric, ResourceType>("Type", resources);
 
             modelBuilder.Entity<ResourceGeneric>()
             .HasOne(r => r.Airplane)
