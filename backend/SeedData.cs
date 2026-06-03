@@ -34,23 +34,17 @@ namespace backend
             var fakeFuel = new Faker<Fuel>()
                 .RuleFor(f => f.Sku, f => $"FUEL-{f.Random.Int(0, 100000)}")
                 .RuleFor(f => f.Name, f => f.Commerce.ProductName())
-                .RuleFor(f => f.Amount, f => f.Random.Int(100, 5000))
-                .RuleFor(f => f.Type, _ => ResourceType.Fuel)
-                .RuleFor(f => f.Unit, _ => UnitType.L);
+                .RuleFor(f => f.Amount, f => f.Random.Int(100, 5000));
 
             var fakeAmmo = new Faker<Ammunition>()
                 .RuleFor(a => a.Sku, f => $"AMMO-{f.Random.Int(0, 100000)}")
                 .RuleFor(a => a.Name, f => f.Commerce.ProductName())
-                .RuleFor(a => a.Amount, f => f.Random.Int(100, 2000))
-                .RuleFor(a => a.Type, _ => ResourceType.Ammunition)
-                .RuleFor(a => a.Unit, _ => UnitType.rounds);
+                .RuleFor(a => a.Amount, f => f.Random.Int(100, 2000));
 
             var fakeBattery = new Faker<Battery>()
                 .RuleFor(b => b.Sku, f => $"BAT-{f.Random.Int(0, 100000)}")
                 .RuleFor(b => b.Name, f => f.Commerce.ProductName())
-                .RuleFor(b => b.Amount, f => f.Random.Int(1, 10))
-                .RuleFor(b => b.Type, _ => ResourceType.Battery)
-                .RuleFor(b => b.Unit, _ => UnitType.kWh);
+                .RuleFor(b => b.Amount, f => f.Random.Int(1, 10));
 
             var fakeSite = new Faker<MaintenanceSite>();
 

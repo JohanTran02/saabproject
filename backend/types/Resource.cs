@@ -9,7 +9,7 @@ namespace backend.types
 
         public int Amount { get; set; }
 
-        public virtual UnitType Unit { get; }
+        public abstract UnitType Unit { get; set; }
         public virtual ResourceType Type { get; }
 
         public int? AirplaneId { get; set; }
@@ -33,19 +33,19 @@ namespace backend.types
     public class Fuel : ResourceGeneric
     {
         public override ResourceType Type => ResourceType.Fuel;
-        public override UnitType Unit => UnitType.L;
+        public override UnitType Unit { get; set; } = UnitType.L;
     }
 
     public class Ammunition : ResourceGeneric
     {
         public override ResourceType Type => ResourceType.Ammunition;
-        public override UnitType Unit => UnitType.rounds;
+        public override UnitType Unit { get; set; } = UnitType.rounds;
     }
 
     public class Battery : ResourceGeneric
     {
         public override ResourceType Type => ResourceType.Battery;
-        public override UnitType Unit => UnitType.kWh;
+        public override UnitType Unit { get; set; } = UnitType.kWh;
     }
 
     public class ResourceBuffer
