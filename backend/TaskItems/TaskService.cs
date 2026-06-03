@@ -11,8 +11,6 @@ namespace backend.TaskItems
 
         public async Task<List<MaintenanceTaskDTO>> GetAllAsync()
         {
-            var dbName = _db.Database.GetDbConnection().Database;
-            Console.WriteLine(dbName);
             List<MaintenanceTask> tasks = await _db.Tasks.ToListAsync();
             List<MaintenanceTaskDTO> dTOs = [.. tasks.Select(MaintenanceTaskDTO.FromEntity)];
 
