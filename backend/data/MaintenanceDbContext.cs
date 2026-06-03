@@ -31,6 +31,14 @@ namespace backend.data
             .HasOne(r => r.Airplane)
             .WithMany(a => a.Resources)
             .HasForeignKey(r => r.AirplaneId);
+
+            modelBuilder.Entity<ResourceGeneric>()
+            .HasIndex(r => new { r.Name, r.Type })
+            .IsUnique();
+
+            modelBuilder.Entity<ResourceGeneric>()
+            .HasIndex(r => r.Sku)
+            .IsUnique();
         }
     }
 }
