@@ -99,7 +99,7 @@ namespace backend.types.DTO
             return new MaintenanceTask
             {
                 Description = dto.Description,
-                OrderId = dto.OrderId,
+                MaintenanceOrderId = dto.MaintenanceOrderId,
                 AirplaneId = dto.AirplaneId,
                 Type = dto.Type,
                 Deadline = dto.Deadline,
@@ -126,7 +126,7 @@ namespace backend.types.DTO
         [Required] string Description,
 
         //Unique fields
-        [Required] int OrderId,
+        [Required] int MaintenanceOrderId,
         [Required] int AirplaneId,
         [Required] TaskType Type,
         [Required] DateTimeOffset Deadline,
