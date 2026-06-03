@@ -18,16 +18,16 @@ namespace backend.Resources
 
         static async Task<IResult> GetAllResources(IResourceService resourceService)
         {
-            List<ResourceGeneric> resources = await resourceService.GetAllAsync();
+            List<ResourceDTO> resources = await resourceService.GetAllAsync();
 
-            return TypedResults.Ok(resources.Select(ResourceDTO.FromEntity));
+            return TypedResults.Ok(resources);
         }
 
         static async Task<IResult> GetResourceById(int id, IResourceService resourceService)
         {
             return await resourceService.GetByIdAsync(id)
-                is ResourceGeneric resource
-                ? TypedResults.Ok(ResourceDTO.FromEntity(resource))
+                is ResourceDTO resource
+                ? TypedResults.Ok(resource)
                 : TypedResults.NotFound();
         }
 
@@ -49,9 +49,9 @@ namespace backend.Resources
         {
             try
             {
-                ResourceGeneric resource = await resourceService.CreateAsync(incoming);
+                ResourceDTO resource = await resourceService.CreateAsync(incoming);
 
-                return TypedResults.Created($"Created resource/{resource.Id}", ResourceDTO.FromEntity(resource));
+                return TypedResults.Created($"Created resource/{resource.Id}", resource);
             }
             catch (InvalidOperationException error)
             {

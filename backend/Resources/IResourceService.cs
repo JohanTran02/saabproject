@@ -5,10 +5,10 @@ namespace backend.Resources
 {
     public interface IResourceService
     {
-        Task<List<ResourceGeneric>> GetAllAsync();
-        Task<ResourceGeneric?> GetByIdAsync(int id);
+        Task<List<ResourceDTO>> GetAllAsync();
+        Task<ResourceDTO?> GetByIdAsync(int id);
         Task<bool> DeleteByIdAsync(int id);
         Task<bool> UpdateByIdAsync(int id, UpdateResourceDTO incoming);
-        Task<ResourceGeneric> CreateAsync(CreateResourceDTO incoming);
+        Task<ResourceDTO> CreateAsync(CreateResourceDTO incoming);
     }
 }
