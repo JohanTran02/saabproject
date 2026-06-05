@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using backend;
 using backend.data;
+using backend.OrderItems;
 using backend.Resources;
 using backend.TaskItems;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IResourceService, ResourceService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddDbContext<MaintenanceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -45,6 +47,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.RegisterTaskItemsEndpoints();
+app.RegisterOrderItemsEndpoints();
 app.RegisterResourceItemsEndpoints();
 app.UseHttpsRedirection();
 
