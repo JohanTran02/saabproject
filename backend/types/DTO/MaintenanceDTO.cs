@@ -50,7 +50,39 @@ namespace backend.types.DTO
             EndedAt: order.EndedAt,
             OrderTitle: order.OrderTitle
         );
+
+        public static MaintenanceOrder FromDTO(CreateMaintenanceOrderDTO dto)
+        {
+            return new MaintenanceOrder
+            {
+                Description = dto.Description,
+                OrderTitle = dto.OrderTitle,
+                Comments = dto.Comments ?? "",
+            };
+        }
     }
+
+
+    public record UpdateMaintenanceOrderDTO(
+        string? Comments,
+        string? Description,
+        MaintenanceGenericStatus? Status,
+        DateTimeOffset? StartedAt,
+        DateTimeOffset? UpdatedAt,
+        DateTimeOffset? EndedAt,
+
+        //Unique fields
+        string? OrderTitle
+    );
+
+    public record CreateMaintenanceOrderDTO(
+        [Required] string Description,
+
+        //Unique fields
+        [Required] string OrderTitle,
+
+        string? Comments
+    );
 
     public record MaintenanceTaskDTO(
         [Required]
