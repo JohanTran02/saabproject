@@ -179,5 +179,22 @@ namespace backend.types.DTO
             Status: site.Status,
             CurrentTaskId: site.CurrentTaskId
         );
+
+        public static MaintenanceSite FromDTO(CreateMaintenanceSiteDTO dto)
+        {
+            return new MaintenanceSite()
+            {
+                Status = dto.Status,
+            };
+        }
     }
+
+    public record CreateMaintenanceSiteDTO(
+        MaintenanceSiteStatus Status
+    );
+
+    public record UpdateMaintenanceSiteDTO(
+        MaintenanceSiteStatus Status,
+        int? CurrentTaskId
+    );
 }
