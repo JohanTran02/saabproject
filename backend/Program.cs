@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using backend;
 using backend.data;
 using backend.OrderItems;
+using backend.PersonnelItems;
 using backend.Resources;
 using backend.SiteItems;
 using backend.TaskItems;
@@ -12,6 +13,7 @@ builder.Services.AddScoped<IResourceService, ResourceService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ISiteService, SiteService>();
+builder.Services.AddScoped<IPersonnelService, PersonnelService>();
 
 builder.Services.AddDbContext<MaintenanceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -49,6 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.RegisterTaskItemsEndpoints();
+app.RegisterPersonnelItemsEndpoints();
 app.RegisterSiteItemsEndpoints();
 app.RegisterOrderItemsEndpoints();
 app.RegisterResourceItemsEndpoints();
