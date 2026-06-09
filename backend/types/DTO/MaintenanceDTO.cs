@@ -99,7 +99,8 @@ namespace backend.types.DTO
         int MaintenanceOrderId,
         int AirplaneId,
         TaskType Type,
-        double DurationMinutes
+        double DurationMinutes,
+        IReadOnlyList<int> AssignedPersonnel
     ) : MaintenanceGenericDTO(
         Id,
         Comments,
@@ -123,7 +124,8 @@ namespace backend.types.DTO
             MaintenanceOrderId: task.MaintenanceOrderId,
             AirplaneId: task.AirplaneId,
             Type: task.Type,
-            DurationMinutes: task.Duration.TotalMinutes
+            DurationMinutes: task.Duration.TotalMinutes,
+            AssignedPersonnel: [.. task.AssignedPersonnel.Select(p => p.Id)]
         );
 
         public static MaintenanceTask FromDTO(CreateMaintenanceTaskDTO dto)

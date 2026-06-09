@@ -16,17 +16,17 @@ namespace backend
 
             if (await context.Airplanes.AnyAsync()) return;
 
-            var fakeTech = new Faker<Technician>()
+            var fakeTech = new Faker<Personnel>()
                 .RuleFor(t => t.Name, f => f.Person.FirstName + " " + f.Person.LastName)
                 .RuleFor(t => t.Status, _ => PersonnelStatus.Inactive)
                 .RuleFor(t => t.Role, _ => UserRole.Technician);
 
-            var fakeOperator = new Faker<Operator>()
+            var fakeOperator = new Faker<Personnel>()
                 .RuleFor(o => o.Name, f => f.Person.FirstName + " " + f.Person.LastName)
                 .RuleFor(o => o.Status, _ => PersonnelStatus.Inactive)
                 .RuleFor(o => o.Role, _ => UserRole.Operator);
 
-            var fakeSupervisor = new Faker<Supervisor>()
+            var fakeSupervisor = new Faker<Personnel>()
                 .RuleFor(s => s.Name, f => f.Person.FirstName + " " + f.Person.LastName)
                 .RuleFor(s => s.Status, _ => PersonnelStatus.Inactive)
                 .RuleFor(s => s.Role, _ => UserRole.Supervisor);

@@ -16,14 +16,6 @@ namespace backend.data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<Personnel> personnel = [
-                new Technician(),
-                new Operator(),
-                new Supervisor()
-            ];
-
-            modelBuilder.AutoMapByEnum<Personnel, UserRole>("Role", personnel);
-
             List<ResourceGeneric> resources = [
                 new Fuel(),
                 new Ammunition(),
