@@ -6,7 +6,8 @@ namespace backend.PersonnelItems
     {
         public static void RegisterPersonnelItemsEndpoints(this WebApplication app)
         {
-            var personnel = app.MapGroup("/personnel");
+            var personnel = app.MapGroup("/personnel")
+                               .WithTags("Personnel");
 
             personnel.MapGet("/", GetAllPersonnel);
             personnel.MapGet("/{id}", GetPersonnelById);

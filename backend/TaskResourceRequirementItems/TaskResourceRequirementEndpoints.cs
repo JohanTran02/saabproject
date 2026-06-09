@@ -6,7 +6,8 @@ namespace backend.TaskResourceRequirementItems
     {
         public static void RegisterTaskResourceRequirementEndpoints(this WebApplication app)
         {
-            var resourceRequirements = app.MapGroup("/requirements");
+            var resourceRequirements = app.MapGroup("/requirements")
+                                          .WithTags("Task Resource Requirements");
 
             resourceRequirements.MapGet("/{taskId}/all", GetAllTaskResourceRequirements);
             resourceRequirements.MapGet("/{id}", GetTaskResourceRequirementById);

@@ -7,7 +7,8 @@ namespace backend.Resources
     {
         public static void RegisterResourceItemsEndpoints(this WebApplication app)
         {
-            var resources = app.MapGroup("/resources");
+            var resources = app.MapGroup("/resources")
+                               .WithTags("Resources");
 
             resources.MapGet("/", GetAllResources);
             resources.MapGet("/{id}", GetResourceById);
