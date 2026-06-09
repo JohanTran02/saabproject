@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
 namespace backend.types
 {
-    public abstract class Personnel
+    public class Personnel
     {
         public int Id { get; set; }
 
@@ -8,35 +11,17 @@ namespace backend.types
 
         public PersonnelStatus Status { get; set; } = PersonnelStatus.Inactive;
 
-        public abstract UserRole Role { get; set; }
-
-    }
-
-    public class Technician : Personnel
-    {
-        public override UserRole Role { get; set; } = UserRole.Technician;
+        public UserRole Role { get; set; }
 
         public int? CurrentTaskId { get; set; }
 
+        [ForeignKey(nameof(CurrentTaskId))]
         public MaintenanceTask? CurrentTask { get; set; }
-    }
-
-    public class Operator : Personnel
-    {
-        public override UserRole Role { get; set; } = UserRole.Operator;
 
         public int? CurrentOrderId { get; set; }
 
+        [ForeignKey(nameof(CurrentOrderId))]
         public MaintenanceOrder? CurrentOrder { get; set; }
-    }
-
-    public class Supervisor : Personnel
-    {
-        public override UserRole Role { get; set; } = UserRole.Supervisor;
-
-        public int? CurrentTaskId { get; set; }
-
-        public MaintenanceTask? CurrentTask { get; set; }
     }
 
     public enum UserRole

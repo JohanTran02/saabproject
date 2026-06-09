@@ -63,7 +63,7 @@ namespace backend.PersonnelItems
         public async Task<bool> AssignTaskAsync(int id, int? taskId)
         {
             Personnel? worker = await _db.Personnel
-                .Where(p => p.Id == id && (p is Technician || p is Supervisor))
+                .Where(p => p.Id == id && (p.Role == UserRole.Technician || p.Role == UserRole.Supervisor))
                 .FirstOrDefaultAsync();
 
             if (worker is null)
@@ -79,13 +79,14 @@ namespace backend.PersonnelItems
                 }
             }
 
-            if (worker is Technician tech)
+            switch (worker.Role)
             {
-                tech.CurrentTaskId = taskId;
-            }
-            else if (worker is Supervisor super)
-            {
-                super.CurrentTaskId = taskId;
+                case UserRole.Technician:
+                    worker.CurrentTaskId = taskId;
+                    break;
+                case UserRole.Supervisor:
+                    worker.CurrentTaskId = taskId;
+                    break;
             }
 
             await _db.SaveChangesAsync();
@@ -94,9 +95,9 @@ namespace backend.PersonnelItems
 
         public async Task<bool> AssignOrderAsync(int id, int? orderId)
         {
-            Operator? op = await _db.Personnel
-                .OfType<Operator>()
-                .FirstOrDefaultAsync(p => p.Id == id);
+            Personnel? op = await _db.Personnel
+                .OfType<Personnel>()
+                .FirstOrDefaultAsync(p => p.Id == id && p.Role == UserRole.Operator);
 
             if (op is null)
             {

@@ -11,7 +11,7 @@ namespace backend.TaskItems
 
         public async Task<List<MaintenanceTaskDTO>> GetAllAsync()
         {
-            List<MaintenanceTask> tasks = await _db.Tasks.ToListAsync();
+            List<MaintenanceTask> tasks = await _db.Tasks.Include(t => t.AssignedPersonnel).ToListAsync();
             List<MaintenanceTaskDTO> dTOs = [.. tasks.Select(MaintenanceTaskDTO.FromEntity)];
 
             return dTOs;
