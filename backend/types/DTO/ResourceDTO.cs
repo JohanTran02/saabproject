@@ -77,14 +77,51 @@ namespace backend.types.DTO
         public static TaskResourceRequirementDTO FromEntity(TaskResourceRequirement resource) => new(
             Id: resource.Id,
             Amount: resource.Amount,
-            Buffer: new ResourceBufferDTO(
-            resource.Buffer.Id,
-            resource.Buffer.MinReqAmount,
-            resource.Buffer.OptimalReqAmount,
-            resource.Buffer.MinReqAmount
-            )
+            Buffer: ResourceBufferDTO.FromEntity(resource.Buffer)
         );
+
+        public static TaskResourceRequirement FromDTO(CreateTaskResourceRequirementDTO resource)
+        {
+            return new TaskResourceRequirement
+            {
+                TaskId = resource.TaskId,
+                ResourceId = resource.ResourceId,
+                Amount = resource.Amount,
+                Buffer = new ResourceBuffer
+                {
+                    MaxReqAmount = resource.Buffer.MaxReqAmount,
+                    OptimalReqAmount = resource.Buffer.OptimalReqAmount,
+                    MinReqAmount = resource.Buffer.MinReqAmount
+                }
+            };
+        }
     }
+
+    public record CreateTaskResourceRequirementDTO(
+        int TaskId,
+        int ResourceId,
+        int Amount,
+        CreateResourceBufferDTO Buffer
+    );
+
+    public record UpdateTaskResourceRequirementDTO(
+        int? TaskId,
+        int? ResourceId,
+        int? Amount,
+        UpdateResourceBufferDTO? Buffer
+    );
+
+    public record UpdateResourceBufferDTO(
+        int MaxReqAmount,
+        int OptimalReqAmount,
+        int MinReqAmount
+    );
+
+    public record CreateResourceBufferDTO(
+        int MaxReqAmount,
+        int OptimalReqAmount,
+        int MinReqAmount
+    );
 
     public record ResourceBufferDTO(
         int Id,
@@ -92,7 +129,6 @@ namespace backend.types.DTO
         int OptimalReqAmount,
         int MinReqAmount
     )
-
     {
         public static ResourceBufferDTO FromEntity(ResourceBuffer buffer) => new(
             Id: buffer.Id,
