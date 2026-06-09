@@ -6,6 +6,7 @@ using backend.PersonnelItems;
 using backend.Resources;
 using backend.SiteItems;
 using backend.TaskItems;
+using backend.TaskResourceRequirementItems;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ISiteService, SiteService>();
 builder.Services.AddScoped<IPersonnelService, PersonnelService>();
+builder.Services.AddScoped<ITaskResourceRequirementService, TaskResourceRequirementService>();
 
 builder.Services.AddDbContext<MaintenanceDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -55,6 +57,7 @@ app.RegisterPersonnelItemsEndpoints();
 app.RegisterSiteItemsEndpoints();
 app.RegisterOrderItemsEndpoints();
 app.RegisterResourceItemsEndpoints();
+app.RegisterTaskResourceRequirementEndpoints();
 app.UseHttpsRedirection();
 
 app.Run();
