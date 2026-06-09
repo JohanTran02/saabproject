@@ -63,12 +63,11 @@ namespace backend.TaskItems
 
         public async Task<MaintenanceTaskDTO> CreateAsync(CreateMaintenanceTaskDTO dto)
         {
-            MaintenanceTask? task = await _db.Tasks.FindAsync(dto.MaintenanceOrderId);
+            if (!await _db.Tasks.AnyAsync(t => t.AirplaneId == dto.AirplaneId))
+                throw new InvalidOperationException($"Airplane doesn't exist.");
 
-            if (task is null)
-            {
-                throw new InvalidOperationException($"A {dto.MaintenanceOrderId} doesn't exist.");
-            }
+            if (!await _db.Tasks.AnyAsync(t => t.MaintenanceOrderId == dto.MaintenanceOrderId))
+                throw new InvalidOperationException($"Maintenance Order doesn't exist.");
 
             var entity = MaintenanceTaskDTO.FromDTO(dto);
             _db.Tasks.Add(entity);
