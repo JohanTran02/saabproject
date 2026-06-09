@@ -6,7 +6,8 @@ namespace backend.OrderItems
     {
         public static void RegisterOrderItemsEndpoints(this WebApplication app)
         {
-            var orders = app.MapGroup("/orders");
+            var orders = app.MapGroup("/orders")
+                            .WithTags("Orders");
 
             orders.MapGet("/", GetAllOrders);
             orders.MapGet("/{id}", GetOrderById);

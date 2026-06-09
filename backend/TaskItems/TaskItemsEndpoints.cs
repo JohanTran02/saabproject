@@ -7,7 +7,8 @@ namespace backend.TaskItems
     {
         public static void RegisterTaskItemsEndpoints(this WebApplication app)
         {
-            var tasks = app.MapGroup("/task");
+            var tasks = app.MapGroup("/tasks")
+                           .WithTags("Tasks");
 
             tasks.MapGet("/", GetAllTasks);
             tasks.MapGet("/{id}", GetTaskById);

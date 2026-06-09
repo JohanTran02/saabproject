@@ -6,7 +6,8 @@ namespace backend.SiteItems
     {
         public static void RegisterSiteItemsEndpoints(this WebApplication app)
         {
-            var sites = app.MapGroup("/sites");
+            var sites = app.MapGroup("/sites")
+                           .WithTags("Sites");
 
             sites.MapGet("/", GetAllSites);
             sites.MapGet("/{id}", GetSiteById);
