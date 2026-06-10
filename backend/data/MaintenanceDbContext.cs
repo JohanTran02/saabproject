@@ -1,5 +1,4 @@
 using backend.types;
-using backend.utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.data
@@ -11,29 +10,16 @@ namespace backend.data
         public DbSet<MaintenanceOrder> Orders => Set<MaintenanceOrder>();
         public DbSet<MaintenanceTask> Tasks => Set<MaintenanceTask>();
         public DbSet<Personnel> Personnel => Set<Personnel>();
-        public DbSet<ResourceGeneric> Resources => Set<ResourceGeneric>();
+        public DbSet<Resource> Resources => Set<Resource>();
         public DbSet<TaskResourceRequirement> ResourceRequirements => Set<TaskResourceRequirement>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<ResourceGeneric> resources = [
-                new Fuel(),
-                new Ammunition(),
-                new Battery()
-            ];
-
-            modelBuilder.AutoMapByEnum<ResourceGeneric, ResourceType>("Type", resources);
-
-            modelBuilder.Entity<ResourceGeneric>()
-            .HasOne(r => r.Airplane)
-            .WithMany(a => a.Resources)
-            .HasForeignKey(r => r.AirplaneId);
-
-            modelBuilder.Entity<ResourceGeneric>()
+            modelBuilder.Entity<Resource>()
             .HasIndex(r => new { r.Name, r.Type })
             .IsUnique();
 
-            modelBuilder.Entity<ResourceGeneric>()
+            modelBuilder.Entity<Resource>()
             .HasIndex(r => r.Sku)
             .IsUnique();
         }

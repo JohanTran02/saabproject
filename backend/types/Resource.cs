@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace backend.types
 {
-    public abstract class ResourceGeneric
+    public class Resource
     {
+        private ResourceType _type;
+
         public int Id { get; set; }
 
         public string Sku { get; set; } = "";
@@ -9,11 +13,19 @@ namespace backend.types
 
         public int Amount { get; set; }
 
-        public abstract UnitType Unit { get; set; }
-        public abstract ResourceType Type { get; set; }
-
-        public int? AirplaneId { get; set; }
-        public Airplane? Airplane { get; set; }
+        public UnitType Unit { get; set; }
+        public ResourceType Type
+        {
+            get => _type;
+            set
+            {
+                _type = value;
+                if (ResourceConfig.AllowedUnits.TryGetValue(value, out UnitType unitType))
+                {
+                    Unit = unitType;
+                }
+            }
+        }
     }
 
     public class TaskResourceRequirement
@@ -24,33 +36,15 @@ namespace backend.types
         public MaintenanceTask Task { get; set; } = null!;
 
         public int ResourceId { get; set; }
-        public ResourceGeneric Resource { get; set; } = null!;
+        public Resource Resource { get; set; } = null!;
 
         public int Amount { get; set; }
         public ResourceBuffer Buffer { get; set; } = new ResourceBuffer();
     }
 
-    public class Fuel : ResourceGeneric
-    {
-        public override ResourceType Type { get; set; } = ResourceType.Fuel;
-        public override UnitType Unit { get; set; } = UnitType.L;
-    }
-
-    public class Ammunition : ResourceGeneric
-    {
-        public override ResourceType Type { get; set; } = ResourceType.Ammunition;
-        public override UnitType Unit { get; set; } = UnitType.rounds;
-    }
-
-    public class Battery : ResourceGeneric
-    {
-        public override ResourceType Type { get; set; } = ResourceType.Battery;
-        public override UnitType Unit { get; set; } = UnitType.kWh;
-    }
-
+    [Owned]
     public class ResourceBuffer
     {
-        public int Id { get; set; }
         public int MaxReqAmount { get; set; }
         public int OptimalReqAmount { get; set; }
         public int MinReqAmount { get; set; }
@@ -68,5 +62,15 @@ namespace backend.types
         Fuel,
         Ammunition,
         Battery
+    }
+
+    public static class ResourceConfig
+    {
+        public static readonly Dictionary<ResourceType, UnitType> AllowedUnits = new()
+    {
+        { ResourceType.Fuel, UnitType.L },
+        { ResourceType.Ammunition, UnitType.rounds },
+        { ResourceType.Battery, UnitType.kWh }
+    };
     }
 }

@@ -31,20 +31,23 @@ namespace backend
                 .RuleFor(s => s.Status, _ => PersonnelStatus.Inactive)
                 .RuleFor(s => s.Role, _ => UserRole.Supervisor);
 
-            var fakeFuel = new Faker<Fuel>()
+            var fakeFuel = new Faker<Resource>()
                 .RuleFor(f => f.Sku, f => $"FUEL-{f.Random.Int(0, 100000)}")
                 .RuleFor(f => f.Name, f => f.Commerce.ProductName())
-                .RuleFor(f => f.Amount, f => f.Random.Int(100, 5000));
+                .RuleFor(f => f.Amount, f => f.Random.Int(100, 5000))
+                .RuleFor(f => f.Type, _ => ResourceType.Fuel);
 
-            var fakeAmmo = new Faker<Ammunition>()
+            var fakeAmmo = new Faker<Resource>()
                 .RuleFor(a => a.Sku, f => $"AMMO-{f.Random.Int(0, 100000)}")
                 .RuleFor(a => a.Name, f => f.Commerce.ProductName())
-                .RuleFor(a => a.Amount, f => f.Random.Int(100, 2000));
+                .RuleFor(a => a.Amount, f => f.Random.Int(100, 2000))
+                .RuleFor(f => f.Type, _ => ResourceType.Ammunition);
 
-            var fakeBattery = new Faker<Battery>()
+            var fakeBattery = new Faker<Resource>()
                 .RuleFor(b => b.Sku, f => $"BAT-{f.Random.Int(0, 100000)}")
                 .RuleFor(b => b.Name, f => f.Commerce.ProductName())
-                .RuleFor(b => b.Amount, f => f.Random.Int(1, 10));
+                .RuleFor(b => b.Amount, f => f.Random.Int(1, 10))
+                .RuleFor(f => f.Type, _ => ResourceType.Battery);
 
             var fakeSite = new Faker<MaintenanceSite>();
 
@@ -88,7 +91,7 @@ namespace backend
             var orders = new List<MaintenanceOrder>();
             var tasks = new List<MaintenanceTask>();
             var resourceRequirements = new List<TaskResourceRequirement>();
-            var resources = new List<ResourceGeneric>();
+            var resources = new List<Resource>();
             for (int i = 0; i < airplanes.Count; i++)
             {
                 var order = fakeOrder.Generate();

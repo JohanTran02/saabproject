@@ -12,7 +12,7 @@ namespace backend.types.DTO
         UnitType Unit
     )
     {
-        public static ResourceDTO FromEntity(ResourceGeneric resource) => new(
+        public static ResourceDTO FromEntity(Resource resource) => new(
             Id: resource.Id,
             Name: resource.Name,
             Amount: resource.Amount,
@@ -21,15 +21,15 @@ namespace backend.types.DTO
             Unit: resource.Unit
         );
 
-        public static ResourceGeneric FromDTO(CreateResourceDTO dto)
+        public static Resource FromDTO(CreateResourceDTO dto)
         {
             var uniqueSKU = GenerateUniqueSKU(dto.Type);
 
             return dto.Type switch
             {
-                ResourceType.Fuel => new Fuel { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU },
-                ResourceType.Ammunition => new Ammunition { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU },
-                ResourceType.Battery => new Battery { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU },
+                ResourceType.Fuel => new Resource { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU, Type = ResourceType.Fuel },
+                ResourceType.Ammunition => new Resource { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU, Type = ResourceType.Ammunition },
+                ResourceType.Battery => new Resource { Name = dto.Name, Amount = dto.Amount, Sku = uniqueSKU, Type = ResourceType.Battery },
                 _ => throw new ArgumentException($"Unknown resource type: {dto.Type}")
             };
 
@@ -44,13 +44,7 @@ namespace backend.types.DTO
                 _ => "RES"
             };
 
-            string unitPrefix = type switch
-            {
-                ResourceType.Fuel => UnitType.L.ToString(),
-                ResourceType.Ammunition => UnitType.rounds.ToString(),
-                ResourceType.Battery => UnitType.kWh.ToString(),
-                _ => ""
-            };
+            string unitPrefix = ResourceConfig.AllowedUnits[type].ToString();
 
             var randomizer = new Randomizer();
             return $"{skuPrefix}-{randomizer.Int(0, 100000)}-{unitPrefix}";
@@ -64,19 +58,22 @@ namespace backend.types.DTO
     );
 
     public record UpdateResourceDTO(
-    int Amount
+    int Amount,
+    string Name
     );
 
     public record TaskResourceRequirementDTO(
         [Required]
         int Id,
         int Amount,
+        int ResourceId,
         ResourceBufferDTO Buffer
     )
     {
         public static TaskResourceRequirementDTO FromEntity(TaskResourceRequirement resource) => new(
             Id: resource.Id,
             Amount: resource.Amount,
+            ResourceId: resource.ResourceId,
             Buffer: ResourceBufferDTO.FromEntity(resource.Buffer)
         );
 
@@ -100,6 +97,7 @@ namespace backend.types.DTO
     public record CreateTaskResourceRequirementDTO(
         int TaskId,
         int ResourceId,
+        int AirplaneId,
         int Amount,
         CreateResourceBufferDTO Buffer
     );
@@ -107,14 +105,15 @@ namespace backend.types.DTO
     public record UpdateTaskResourceRequirementDTO(
         int? TaskId,
         int? ResourceId,
+        int? AirplaneId,
         int? Amount,
         UpdateResourceBufferDTO? Buffer
     );
 
     public record UpdateResourceBufferDTO(
-        int MaxReqAmount,
-        int OptimalReqAmount,
-        int MinReqAmount
+        int? MaxReqAmount,
+        int? OptimalReqAmount,
+        int? MinReqAmount
     );
 
     public record CreateResourceBufferDTO(
@@ -124,14 +123,12 @@ namespace backend.types.DTO
     );
 
     public record ResourceBufferDTO(
-        int Id,
         int MaxReqAmount,
         int OptimalReqAmount,
         int MinReqAmount
     )
     {
         public static ResourceBufferDTO FromEntity(ResourceBuffer buffer) => new(
-            Id: buffer.Id,
             MaxReqAmount: buffer.MaxReqAmount,
             OptimalReqAmount: buffer.OptimalReqAmount,
             MinReqAmount: buffer.MinReqAmount
