@@ -4,6 +4,6 @@ namespace backend.types
     {
         public int Id { get; set; }
 
-        public List<ResourceGeneric> Resources { get; set; } = [];
+        public List<Resource> Resources { get; set; } = [];
     }
 }

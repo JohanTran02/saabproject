@@ -11,7 +11,7 @@ namespace backend.Resources
 
         public async Task<List<ResourceDTO>> GetAllAsync()
         {
-            List<ResourceGeneric> resources = await _db.Resources.ToListAsync();
+            List<Resource> resources = await _db.Resources.ToListAsync();
             List<ResourceDTO> dTOs = [.. resources.Select(ResourceDTO.FromEntity)];
 
             return dTOs;
@@ -20,14 +20,14 @@ namespace backend.Resources
         public async Task<ResourceDTO?> GetByIdAsync(int id)
         {
             return await _db.Resources.FindAsync(id)
-                is ResourceGeneric resource
+                is Resource resource
                 ? ResourceDTO.FromEntity(resource)
                 : null;
         }
 
         public async Task<bool> DeleteByIdAsync(int id)
         {
-            ResourceGeneric? resource = await _db.Resources.FindAsync(id);
+            Resource? resource = await _db.Resources.FindAsync(id);
 
             if (resource is null) return false;
 
@@ -41,7 +41,7 @@ namespace backend.Resources
 
         public async Task<bool> UpdateByIdAsync(int id, UpdateResourceDTO incoming)
         {
-            ResourceGeneric? resource = await _db.Resources.FindAsync(id);
+            Resource? resource = await _db.Resources.FindAsync(id);
 
             if (resource is null) return false;
 
@@ -55,7 +55,7 @@ namespace backend.Resources
         public async Task<ResourceDTO> CreateAsync(CreateResourceDTO dto)
         {
             bool exists = await _db.Resources
-                .OfType<ResourceGeneric>()
+                .OfType<Resource>()
                 .AnyAsync(r => r.Name == dto.Name && r.Type == dto.Type);
 
             if (exists)

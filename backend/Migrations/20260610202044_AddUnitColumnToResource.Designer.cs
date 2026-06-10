@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using backend.data;
@@ -11,9 +12,11 @@ using backend.data;
 namespace backend.Migrations
 {
     [DbContext(typeof(MaintenanceDbContext))]
-    partial class MaintenanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260610202044_AddUnitColumnToResource")]
+    partial class AddUnitColumnToResource
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +35,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Airplanes", (string)null);
+                    b.ToTable("Airplanes");
                 });
 
             modelBuilder.Entity("backend.types.MaintenanceOrder", b =>
@@ -72,7 +75,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("backend.types.MaintenanceSite", b =>
@@ -93,7 +96,7 @@ namespace backend.Migrations
 
                     b.HasIndex("CurrentTaskId");
 
-                    b.ToTable("Sites", (string)null);
+                    b.ToTable("Sites");
                 });
 
             modelBuilder.Entity("backend.types.MaintenanceTask", b =>
@@ -148,7 +151,7 @@ namespace backend.Migrations
 
                     b.HasIndex("MaintenanceOrderId");
 
-                    b.ToTable("Tasks", (string)null);
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("backend.types.Personnel", b =>
@@ -181,7 +184,7 @@ namespace backend.Migrations
 
                     b.HasIndex("CurrentTaskId");
 
-                    b.ToTable("Personnel", (string)null);
+                    b.ToTable("Personnel");
                 });
 
             modelBuilder.Entity("backend.types.Resource", b =>
@@ -222,7 +225,7 @@ namespace backend.Migrations
                     b.HasIndex("Name", "Type")
                         .IsUnique();
 
-                    b.ToTable("Resources", (string)null);
+                    b.ToTable("Resources");
                 });
 
             modelBuilder.Entity("backend.types.TaskResourceRequirement", b =>
@@ -248,7 +251,7 @@ namespace backend.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("ResourceRequirements", (string)null);
+                    b.ToTable("ResourceRequirements");
                 });
 
             modelBuilder.Entity("backend.types.MaintenanceSite", b =>
@@ -331,7 +334,7 @@ namespace backend.Migrations
 
                             b1.HasKey("TaskResourceRequirementId");
 
-                            b1.ToTable("ResourceRequirements", (string)null);
+                            b1.ToTable("ResourceRequirements");
 
                             b1.WithOwner()
                                 .HasForeignKey("TaskResourceRequirementId");
