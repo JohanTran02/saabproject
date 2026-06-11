@@ -9,10 +9,10 @@ namespace backend.types.DTO
         string Comments,
         string Description,
         MaintenanceGenericStatus Status,
-        DateTimeOffset StartedAt,
-        DateTimeOffset CreatedAt,
-        DateTimeOffset UpdatedAt,
-        DateTimeOffset EndedAt
+        DateTimeOffset? StartedAt = null,
+        DateTimeOffset? CreatedAt = null,
+        DateTimeOffset? UpdatedAt = null,
+        DateTimeOffset? EndedAt = null
     );
 
     public record MaintenanceOrderDTO(
@@ -21,10 +21,10 @@ namespace backend.types.DTO
         string Comments,
         string Description,
         MaintenanceGenericStatus Status,
-        DateTimeOffset StartedAt,
-        DateTimeOffset CreatedAt,
-        DateTimeOffset UpdatedAt,
-        DateTimeOffset EndedAt,
+        DateTimeOffset? StartedAt,
+        DateTimeOffset? CreatedAt,
+        DateTimeOffset? UpdatedAt,
+        DateTimeOffset? EndedAt,
 
         //Unique fields
         string OrderTitle
@@ -68,7 +68,6 @@ namespace backend.types.DTO
         string? Description,
         MaintenanceGenericStatus? Status,
         DateTimeOffset? StartedAt,
-        DateTimeOffset? UpdatedAt,
         DateTimeOffset? EndedAt,
 
         //Unique fields
@@ -90,10 +89,10 @@ namespace backend.types.DTO
         string Comments,
         string Description,
         MaintenanceGenericStatus Status,
-        DateTimeOffset StartedAt,
-        DateTimeOffset CreatedAt,
-        DateTimeOffset UpdatedAt,
-        DateTimeOffset EndedAt,
+        DateTimeOffset? StartedAt,
+        DateTimeOffset? CreatedAt,
+        DateTimeOffset? UpdatedAt,
+        DateTimeOffset? EndedAt,
 
         //Unique fields
         int MaintenanceOrderId,
@@ -147,7 +146,6 @@ namespace backend.types.DTO
         string? Description,
         MaintenanceGenericStatus? Status,
         DateTimeOffset? StartedAt,
-        DateTimeOffset? UpdatedAt,
         DateTimeOffset? EndedAt,
 
         //Unique fields
