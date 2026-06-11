@@ -10,6 +10,14 @@ namespace backend.types
         public MaintenanceTask? CurrentTask { get; set; }
     }
 
+    public interface IHasTimestamps
+    {
+        public DateTimeOffset? StartedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? EndedAt { get; set; }
+    }
+
     public abstract class MaintenanceGeneric
     {
         public int Id { get; set; }
@@ -17,11 +25,10 @@ namespace backend.types
         public string Description { get; set; } = "";
 
         public MaintenanceGenericStatus Status { get; set; }
-
-        public DateTimeOffset StartedAt { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
-        public DateTimeOffset EndedAt { get; set; }
+        public DateTimeOffset? StartedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? EndedAt { get; set; }
     }
 
     public class MaintenanceOrder : MaintenanceGeneric

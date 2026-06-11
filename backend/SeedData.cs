@@ -56,17 +56,13 @@ namespace backend
                 .RuleFor(o => o.Status, f => f.PickRandom<MaintenanceGenericStatus>())
                 .RuleFor(o => o.Description, f => f.Lorem.Sentence())
                 .RuleFor(t => t.Comments, f => f.Lorem.Sentence())
-                .RuleFor(o => o.StartedAt, f => f.Date.Soon().ToUniversalTime())
-                .RuleFor(o => o.CreatedAt, f => f.Date.Past().ToUniversalTime())
-                .RuleFor(o => o.UpdatedAt, f => f.Date.Recent().ToUniversalTime());
+                .RuleFor(o => o.StartedAt, f => f.Date.Soon().ToUniversalTime());
 
             var fakeTask = new Faker<MaintenanceTask>()
                 .RuleFor(t => t.Status, f => f.PickRandom<MaintenanceGenericStatus>())
                 .RuleFor(t => t.Description, f => f.Lorem.Sentence())
                 .RuleFor(t => t.Comments, f => f.Lorem.Sentence())
                 .RuleFor(t => t.StartedAt, f => f.Date.Soon().ToUniversalTime())
-                .RuleFor(t => t.CreatedAt, f => f.Date.Past().ToUniversalTime())
-                .RuleFor(t => t.UpdatedAt, f => f.Date.Recent().ToUniversalTime())
                 .RuleFor(t => t.Type, f => f.PickRandom<TaskType>())
                 .RuleFor(t => t.Duration, f => f.Date.Timespan())
                 .RuleFor(t => t.Deadline, f => f.Date.Future().ToUniversalTime());
