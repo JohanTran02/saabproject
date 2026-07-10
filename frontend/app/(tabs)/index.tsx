@@ -1,4 +1,3 @@
-import MaintenanceOrderCreateModal from "@/components/maintenance/maintenance-create-modal";
 import MaintenanceSiteModal from "@/components/maintenance/maintenance-site-modal";
 import MaintenanceSitesList from "@/components/maintenance/maintenance-sites";
 import ResourceContainer from "@/components/resources/resources";
@@ -12,7 +11,6 @@ export default function MaintenanceHome() {
 
     return (
         <SafeAreaView style={{ flex: 1, height: '100%' }}>
-            <MaintenanceOrderCreateModal />
             {selectedOrder && <MaintenanceSiteModal order={selectedOrder} />}
             <View style={{ flex: 1 }}>
                 <ResourceContainer />

@@ -1,19 +1,11 @@
-import { SubmitHandler } from "react-hook-form"
-import { View, Pressable, Text } from "react-native"
-import { MaintenanceFormData } from "./maintenance-task-form"
-import { useMaintenanceFormContext } from "@/hooks/useMaintenanceForm"
+import { View, Pressable } from "react-native"
 
 export default function MaintenanceTaskButton() {
-    const { handleSubmit } = useMaintenanceFormContext();
-    const onSubmit: SubmitHandler<MaintenanceFormData> = (data) => console.log(data)
-
     return (
-        <View >
+        <View style={{ flex: 1 }}>
             <Pressable
-                onPress={handleSubmit(onSubmit)}
-                style={{ backgroundColor: 'lightblue', padding: 8, borderRadius: 10 }}
+                style={{ backgroundColor: 'red', padding: 8, borderRadius: 100, flex: 1 }}
             >
-                <Text style={{ fontSize: 20, textAlign: "center" }}>Submit</Text>
             </Pressable>
         </View>
     )
